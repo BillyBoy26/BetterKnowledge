@@ -22,7 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function(req, res){
-  res.render('accueil', { user: req.user });
+
+  //embedParam pour Gruveo
+  //TODO dans le tuto c'est dans le client  mais je pense qu c'est mieux de les mettre ici
+  var generated = new Date();
+
+  res.render('accueil', {
+    user: req.user,
+    generated: generated
+  });
 });
 
 // error handlers
