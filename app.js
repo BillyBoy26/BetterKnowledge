@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var SHA256 = require("crypto-js/sha256");
+var btoa = require('btoa');
 
 var app = express();
 
@@ -26,10 +28,15 @@ app.get('/', function(req, res){
   //embedParam pour Gruveo
   //TODO dans le tuto c'est dans le client  mais je pense qu c'est mieux de les mettre ici
   var generated = new Date();
+  //TODO mettre une vrai clé
+  var secret = 'YOUR_API_KEY';
+  var hash = SHA256(generated, secret);
+  var signature = btoa(hash);
 
   res.render('accueil', {
     user: req.user,
-    generated: generated
+    generated: generated,
+    signature:signature
   });
 });
 
