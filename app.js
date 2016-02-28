@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var SHA256 = require("crypto-js/sha256");
 var btoa = require('btoa');
+var session = require('express-session');
+var connexionFB = require('./BK-modules/connexionFB.js')
 
 var app = express();
 
@@ -19,6 +21,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'keyboard cat', key: 'sid'}));
+app.use(connexionFB.initialize());
+app.use(connexionFB.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -40,6 +45,32 @@ app.get('/', function(req, res){
   });
 });
 
+//Passport Router
+app.get('/auth/facebook', connexionFB.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+    connexionFB.authenticate('facebook', {
+      successRedirect : '/',
+      failureRedirect: '/error'
+    }),
+    function(req, res) {
+      res.redirect('/');
+    });
+
+
+app.get('/logged', ensureAuthenticated, function(req, res){
+  res.render('logged', { user: req.user });
+});
+
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/error')
+}
 // error handlers
 
 // development error handler
