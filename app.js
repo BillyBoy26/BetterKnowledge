@@ -28,17 +28,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.get('/', function(req, res){
+app.get('/logged', ensureAuthenticated, function(req, res){
 
   //embedParam pour Gruveo
   //TODO dans le tuto c'est dans le client  mais je pense qu c'est mieux de les mettre ici
   var generated = new Date();
-  //TODO mettre une vrai clé
+  //TODO mettre une vrai cl��
   var secret = 'YOUR_API_KEY';
   var hash = SHA256(generated, secret);
   var signature = btoa(hash);
 
-  res.render('accueil', {
+  res.render('logged', {
     user: req.user,
     generated: generated,
     signature:signature
@@ -49,17 +49,17 @@ app.get('/', function(req, res){
 app.get('/auth/facebook', connexionFB.authenticate('facebook'));
 app.get('/auth/facebook/callback',
     connexionFB.authenticate('facebook', {
-      successRedirect : '/',
+      successRedirect : '/logged',
       failureRedirect: '/error'
     }),
     function(req, res) {
-      res.redirect('/');
+      res.redirect('/logged');
     });
 
 
-app.get('/logged', ensureAuthenticated, function(req, res){
-  res.render('logged', { user: req.user });
-});
+app.get('/', function(req, res){
+	  res.render('accueil', { user: req.user });
+	});
 
 
 app.get('/logout', function(req, res){
@@ -94,6 +94,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
