@@ -58,7 +58,7 @@ app.get('/auth/facebook/callback',
 
 
 app.get('/', function(req, res){
-	  res.render('accueil', { user: req.user });
+	  res.render('accueil');
 	});
 
 
