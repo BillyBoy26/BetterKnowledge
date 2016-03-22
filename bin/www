@@ -34,6 +34,9 @@ var server = https.createServer(options,app);
  * Listen on provided port, on all network interfaces.
  */
 
+
+console.log('Serveur créé et lancement sur le port ' + port);
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
@@ -82,6 +85,7 @@ function onError(error) {
       process.exit(1);
       break;
     default:
+      console.log(error);
       throw error;
   }
 }
