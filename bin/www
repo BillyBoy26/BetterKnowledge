@@ -9,7 +9,7 @@ var debug = require('debug')('BetterKnowledge:server');
 var http = require('http');
 var https = require('https');
 var fs = require('fs');
-
+var path = require('path');
 /**
  * Get port from environment and store in Express.
  */
@@ -23,8 +23,8 @@ console.log('port ' + port);
 
 //Options for https
 var options = {
-  key: fs.readFileSync('connection/key.pem'),
-  cert: fs.readFileSync('connection/cert.pem')
+  key: fs.readFileSync(path.join(__dirname, '../connection') + '/key.pem'),
+  cert: fs.readFileSync(path.join(__dirname, '../connection') + '/cert.pem')
 };
 
 /**
