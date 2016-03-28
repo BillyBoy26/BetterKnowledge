@@ -7,9 +7,15 @@ var bodyParser = require('body-parser');
 var SHA256 = require("crypto-js/sha256");
 var btoa = require('btoa');
 var session = require('express-session');
-var connexionFB = require('./BK-modules/connexionFB.js')
+var connexionFB = require('./BK-modules/connexionFB.js');
 
 var app = express();
+
+process.on('uncaughtException', function(err) {
+  // handle the error safely
+  console.error(err);
+  //throw err;
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
