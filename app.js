@@ -4,10 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var SHA256 = require("crypto-js/sha256");
-var btoa = require('btoa');
-var session = require('express-session');
-var connexionFB = require('./BK-modules/connexionFB.js');
 
 var app = express();
 
@@ -27,56 +23,24 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat', key: 'sid'}));
-app.use(connexionFB.initialize());
-app.use(connexionFB.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-app.get('/logged', ensureAuthenticated, function(req, res){
-
-  //embedParam pour Gruveo
-  //TODO dans le tuto c'est dans le client  mais je pense qu c'est mieux de les mettre ici
-  var generated = new Date();
-  //TODO mettre une vrai cl��
-  var secret = 'YOUR_API_KEY';
-  var hash = SHA256(generated, secret);
-  var signature = btoa(hash);
-
-  res.render('logged', {
-    user: req.user,
-    generated: generated,
-    signature:signature
-  });
-});
-
-//Passport Router
-app.get('/auth/facebook', connexionFB.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-    connexionFB.authenticate('facebook', {
-      successRedirect : '/logged',
-      failureRedirect: '/error'
-    }),
-    function(req, res) {
-      res.redirect('/logged');
-    });
+//TODO a bouger quand il y aura d'autres types de connection
+//On ne peut pas mettre ce bout de code dans le controller authFacebook, sinon la connection se fait juste sur l'url du controler
+// et la méthode ensureAuthentifié return false.
+var connexionFB = require('./BK-modules/connexionFB.js');
+var session = require('express-session');
+app.use(session({ secret: 'keyboard cat', key: 'sid', resave: true, saveUninitialized: true }));
+app.use(connexionFB.initialize());
+app.use(connexionFB.session());
 
 
-app.get('/', function(req, res){
-	  res.render('accueil');
-	});
 
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+//controllers
+app.use(require("./controllers/index.js"));
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/error')
-}
 // error handlers
 
 // development error handler

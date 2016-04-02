@@ -1,4 +1,4 @@
-
+//TODO renommer le package en modèle ?
 //Define MySQL parameter in Config.js file.
 var configFB          =     require('../configuration/configFB');
 var postgres = require('./connexionPostgres');
@@ -29,7 +29,8 @@ passport.use(new FacebookStrategy({
                 if(rows.rowCount===0)
                 {
                     console.log("There is no such user, adding now");
-                    postgres.query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname) VALUES('"+profile.id+"','"+profile.name.familyName+"','"+profile.name.givenName+"')");
+                    postgres.query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname) " +
+                    "VALUES('"+profile.id+"','"+profile.name.familyName+"','"+profile.name.givenName+"')");
                 }
                 else
                 {
