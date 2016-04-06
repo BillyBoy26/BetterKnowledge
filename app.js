@@ -36,8 +36,6 @@ app.use(connexionFB.initialize());
 app.use(connexionFB.session());
 
 
-
-
 //controllers
 app.use(require("./controllers/index.js"));
 
