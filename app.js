@@ -36,7 +36,9 @@ app.use(connexionFB.initialize());
 app.use(connexionFB.session());
 
 
-
+app.use('/polymer', express.static(__dirname + '/node_modules/@polymer/polymer'));
+app.use('/polymer-elements', express.static(__dirname + '/node_modules/npm-polymer-elements'));
+app.use('/web-components', express.static(__dirname + '/node_modules/webcomponents.js'));
 
 //controllers
 app.use(require("./controllers/index.js"));

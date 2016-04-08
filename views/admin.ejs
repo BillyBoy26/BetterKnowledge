@@ -10,16 +10,46 @@
 
     <title>Administration</title>
 
+
+
     <link rel="import"
-          href="bower_components/polymer/polymer.html">
+          href="polymer-elements/paper-button/paper-button.html">
+
+    <link rel="import"
+          href="polymer-elements/iron-icon/iron-icon.html">
+
+    <link rel="import" href="polymer-elements/iron-icons/iron-icons.html">
+    <link rel="import" href="polymer-elements/paper-drawer-panel/paper-drawer-panel.html">
+
+
+
+    <!--
+    <link rel="import"
+          href="polymer-elements/paper-scroll-header-panel/paper-scroll-header-panel.html">
+    -->
+
+
+    <!-- Polyfill Web Components for older browsers -->
+    <script src="web-components/webcomponents-lite.min.js"></script>
 
 </head>
 
 
 <body>
-    <div>
-        adminPage
-    </div>
+
+    <paper-drawer-panel>
+        <div drawer> Drawer panel... </div>
+        <div main> Main panel... </div>
+    </paper-drawer-panel>
+
+    <paper-button>
+        click
+    </paper-button>
+    <iron-icon icon="menu"></iron-icon>
+
+
+
+
 </body>
 
 </html>
