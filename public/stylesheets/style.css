@@ -3,28 +3,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.navbar-default {
-  background-color:#222222;
-}
-
-.navbar-default .navbar-nav>li>a {
-  color: #ffffff;
-}
-
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav>li>a:focus {
-  color: #909090;
-
-}
-
-.navbar-default .navbar-brand {
-  font-size:25px;
-  color: #ffffff;
-}
-
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #909090;
+.header{
+  height: 200px;
 }
 
 .mainContent{
