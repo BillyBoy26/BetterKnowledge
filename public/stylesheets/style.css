@@ -4,7 +4,22 @@ body {
 }
 
 .header{
-  height: 200px;
+  height:100px;
+  width:100%;
+}
+
+paper-scroll-header-panel {
+  height: 100%;
+  width: 100%;
+}
+
+paper-button {
+  display: block;
+  background: #4285f4;
+  color: #fff;
+}
+paper-menu {
+  display: block;
 }
 
 .mainContent{
@@ -13,3 +28,4 @@ body {
   height: 200px;
 
 }
+
