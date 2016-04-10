@@ -1,0 +1,23 @@
+{
+  "name": "BetterKnowledge",
+  "homepage": "https://github.com/BillyBoy26/BetterKnowledge",
+  "authors": [
+    "Benjamin And Denis"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-header-panel": "PolymerElements/paper-header-panel#^1.1.5",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.4",
+    "polymer": "Polymer/polymer#^1.4.0"
+  }
+}
