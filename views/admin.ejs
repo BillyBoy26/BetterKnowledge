@@ -12,40 +12,57 @@
 
 
 
-    <link rel="import"
-          href="polymer-elements/paper-button/paper-button.html">
-
-    <link rel="import"
-          href="polymer-elements/iron-icon/iron-icon.html">
-
-    <link rel="import" href="polymer-elements/iron-icons/iron-icons.html">
-    <link rel="import" href="polymer-elements/paper-drawer-panel/paper-drawer-panel.html">
-
-
-
-    <!--
-    <link rel="import"
-          href="polymer-elements/paper-scroll-header-panel/paper-scroll-header-panel.html">
-    -->
-
 
     <!-- Polyfill Web Components for older browsers -->
-    <script src="web-components/webcomponents-lite.min.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    <link rel="import"
+          href="bower_components/polymer/polymer.html">
+    <link rel="import"
+          href="bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+    <link rel="import"
+          href="bower_components/paper-toolbar/paper-toolbar.html">
+    <link rel="import"
+          href="bower_components/iron-form/iron-form.html">
+    <link rel="import"
+          href="bower_components/paper-input/paper-input.html">
+    <link rel="import"
+          href="bower_components/paper-button/paper-button.html">
+    <link rel="import"
+          href="bower_components/paper-material/paper-material.html">
+
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
+        </style>
+
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/admin.css" rel="stylesheet">
 
 </head>
 
 
-<body>
-
+<body class="fullbleed layout vertical">
     <paper-scroll-header-panel class="flex">
         <paper-toolbar>
-            <div>Hello World!</div>
+            <div>Better Knowledge</div>
         </paper-toolbar>
+        <section>
+            <paper-material elevation="1">
+                <form is="iron-form" id="categoryForm" method="post" action="/categorie/add">
+                    <paper-input name="name" label="name"></paper-input>
+                    <paper-input name="description" label="description"></paper-input>
+                    <paper-input name="image" label="image" type="file"></paper-input>
+
+                    <paper-button raised onclick="submitForm()">Submit</paper-button>
+                    <script>
+                        function submitForm() {
+                            document.getElementById('form').submit();
+                        }
+                    </script>
+                </form>
+            </paper-material>
+        </section>
     </paper-scroll-header-panel>
-
-
-
-
 </body>
 
 </html>

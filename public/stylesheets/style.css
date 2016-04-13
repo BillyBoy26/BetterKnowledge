@@ -1,7 +1,17 @@
+
+/* fullbleed */
+html{
+  height:100%;
+}
+
 body {
+  height: 100%;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+paper-scroll-header-panel{
+  height: 100%;
 .header{
   height:100px;
   width:100%;
