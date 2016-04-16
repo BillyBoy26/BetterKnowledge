@@ -9,8 +9,8 @@ var app = express();
 
 process.on('uncaughtException', function(err) {
   // handle the error safely
-  console.error(err);
-  //throw err;
+  console.log(err);
+  throw err;
 })
 
 // view engine setup
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //TODO a bouger quand il y aura d'autres types de connection
 //On ne peut pas mettre ce bout de code dans le controller authFacebook, sinon la connection se fait juste sur l'url du controler
 // et la méthode ensureAuthentifié return false.
-var connexionFB = require('./BK-modules/connexionFB.js');
+var connexionFB = require('./models/connexionFB.js');
 var session = require('express-session');
 app.use(session({ secret: 'keyboard cat', key: 'sid', resave: true, saveUninitialized: true }));
 app.use(connexionFB.initialize());

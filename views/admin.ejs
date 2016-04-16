@@ -48,17 +48,21 @@
         </paper-toolbar>
         <section>
             <paper-material elevation="1">
-                <form is="iron-form" id="categoryForm" method="post" action="/categorie/add">
-                    <paper-input name="name" label="name"></paper-input>
-                    <paper-input name="description" label="description"></paper-input>
-                    <paper-input name="image" label="image" type="file"></paper-input>
-
-                    <paper-button raised onclick="submitForm()">Submit</paper-button>
-                    <script>
-                        function submitForm() {
-                            document.getElementById('form').submit();
-                        }
-                    </script>
+                <form is="iron-form" id="categoryForm" method="post" action="/admin/category/add">
+                    <div class="layout vertical start-justified">
+                        <div class="layout horizontal" >
+                            <paper-input name="categoryName" label="name" class="flex"></paper-input>
+                            <paper-input name="categoryImage" label="image" type="file" class="flex"></paper-input>
+                        </div>
+                        <paper-input name="categoryDescription" label="description"></paper-input>
+                        <paper-button raised onclick="submitForm()">Submit</paper-button>
+                        <script>
+                            function submitForm() {
+                                document.getElementById('categoryForm').submit();
+                            }
+                        </script>
+                    </div>
+                    </div>
                 </form>
             </paper-material>
         </section>

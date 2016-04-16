@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var connexionFB = require('../BK-modules/connexionFB.js');
+var connexionFB = require('../models/connexionFB.js');
 
 
 
