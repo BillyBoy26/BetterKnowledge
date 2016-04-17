@@ -1,22 +1,18 @@
-var postgres = require('./connexionPostgres');
+var query = require('./connexionPostgres');
 
-postgres.connect();
 
 
 var add = function (category){
-    postgres.query("INSERT INTO bk_category.category(cat_name,cat_description) values($1,$2)",
-        [category.name, category.desciption]);
+    query("INSERT INTO bk_category.t_category_cat(cat_name,cat_description) values($1,$2)",
+        [category.name, category.description],function(err,rows,fields){
+            if(err){
+                console.error(err);
+                throw err;
+            }
+            console.log("Insert category done");
+        });
 }
 
 module.exports = {
     add : add
 };
-/*
-function(err,rows,fields){
-    if(err){
-        console.error(err);
-        throw err;
-    }
-    console.log("Insert category done");
-    return done(null, profile)
-}*/

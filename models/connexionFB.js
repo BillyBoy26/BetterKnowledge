@@ -1,7 +1,6 @@
-//TODO renommer le package en modèle ?
 //Define MySQL parameter in Config.js file.
 var configFB          =     require('../configuration/configFB');
-var postgres = require('./connexionPostgres');
+var query             = require('./connexionPostgres');
 var passport          =     require('passport');
 var FacebookStrategy  =     require('passport-facebook').Strategy;
 
@@ -13,7 +12,6 @@ passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
-postgres.connect();
 
 // Use the FacebookStrategy within Passport.
 passport.use(new FacebookStrategy({
@@ -24,8 +22,11 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function () {
             //Check whether the User exists or not using profile.id
-            postgres.query("SELECT * from bk_user.t_user_usr where usr_id="+profile.id,function(err,rows,fields){
-                if(err) throw err;
+            query("SELECT * from bk_user.t_user_usr where usr_id="+profile.id,function(err,rows,fields){
+                if(err) {
+                    console.error(err);
+                    throw err;
+                }
                 if(rows.rowCount===0)
                 {
                     console.log("There is no such user, adding now");

@@ -10,7 +10,6 @@ var app = express();
 process.on('uncaughtException', function(err) {
   // handle the error safely
   console.log(err);
-  throw err;
 })
 
 // view engine setup
