@@ -3,7 +3,7 @@ var router = require('express').Router();
 
 router.use('/',require('./accueil.js'));
 router.use('/admin',require('./admin.js'));
-router.use('/logged',require('./logged.js'));
+router.use('/knowledgeRoom',require('./knowledgeRoom.js'));
 router.use('/auth/facebook',require('./facebookAuth.js'));
 
 

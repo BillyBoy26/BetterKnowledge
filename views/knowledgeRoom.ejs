@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Welcome to the Knowledgeroom</title>
+
+<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+<link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html" >
+<link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-menu/paper-menu.html">
+
+
+<link href="/stylesheets/style.css" rel="stylesheet">
+
+</head>
+
+<body class="fullbleed layout vertical">
+    <paper-scroll-header-panel class="flex">
+        <paper-toolbar>
+            <span class="title">Better Knowledge</span>
+            <paper-menu-button>
+                <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+                <paper-menu class="dropdown-content">
+                    <paper-item>
+                        <a href="/logout">Logout</a>
+                    </paper-item>
+                </paper-menu>
+            </paper-menu-button>
+        </paper-toolbar>
+        <!-- 1. The Gruveo embed's <iframe> will replace this <div> tag. -->
+        <div id="myembed"></div>
+        <script>
+            // 2. This code loads the Gruveo Embed API code asynchronously.
+            var tag = document.createElement("script");
+            tag.src = "https://www.gruveo.com/embed-api/";
+            var firstScriptTag = document.getElementsByTagName("script")[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+            console.log('initEmbed');
+            // 3. This function gets called after the API code downloads. It creates
+            //    the actual Gruveo embed (the <iframe>) and wires up the event
+            //    handlers.
+            var embed;
+            function onGruveoEmbedAPIReady() {
+                console.log('onGruveoEmbedAPIReady');
+                var generated =<%- JSON.stringify(generated) %>;
+                var signature =<%- JSON.stringify(signature) %>;
+                embed = new Gruveo.Embed("myembed", {
+                    width: 680,
+                    height: 465,
+                    embedParams: {
+                        generated: generated,
+                        signature: signature,
+                        color: "63b2de"
+                    }
+                });
+
+                embed
+                        .on("ready", onEmbedReady)
+                        .on("stateChange", onEmbedStateChange);
+            }
+            console.log('event listen');
+
+            // 4. This function will get called by the API when the embed is ready.
+            function onEmbedReady(e) {
+                embed.call("mycode123", true);
+            }
+
+            // 5. The API will call this function when the embed's state changes.
+            //    The function indicates that after a call is established
+            //    (state == "call"), the embed should hang up after 10 seconds.
+            function onEmbedStateChange(e) {
+                if (e.state == "call") {
+                    setTimeout(endCall, 10000);
+                }
+            }
+            function endCall() {
+                embed.end();
+            }
+            console.log('end script');
+        </script>
+    </paper-scroll-header-panel>
+</body>
+
+</html>
+

@@ -6,7 +6,7 @@ var query =  function(text, values, callback) {
     pg.connect(config.conString,function(err, client, done) {
         client.query(text, values, function(err, result) {
             done();
-            callback(err, result);
+            callback(err, result.rows,result.fields,result.rowCount);
         })
     });
 }

@@ -14,7 +14,7 @@ router.get('/',ensureAuthentificated, function(req, res) {
     var hash = SHA256(generated, secret);
     var signature = btoa(hash);
 
-    res.render('logged', {
+    res.render('knowledgeRoom', {
         user: req.user,
         generated: generated,
         signature:signature

@@ -7,11 +7,11 @@ var connexionFB = require('../models/connexionFB.js');
 router.get('/', connexionFB.authenticate('facebook'));
 router.get('/callback',
     connexionFB.authenticate('facebook', {
-        successRedirect : '/logged',
+        successRedirect : '/knowledgeRoom',
         failureRedirect: '/error'
     }),
     function(req, res) {
-        res.redirect('/logged');
+        res.redirect('/knowledgeRoom');
     });
 
 

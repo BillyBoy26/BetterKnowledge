@@ -11,8 +11,6 @@
     <title>Administration</title>
 
 
-
-
     <!-- Polyfill Web Components for older browsers -->
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
@@ -31,9 +29,14 @@
           href="bower_components/paper-button/paper-button.html">
     <link rel="import"
           href="bower_components/paper-material/paper-material.html">
+    <link rel="import"
+          href="bower_components/iron-list/iron-list.html">
+
+    <link rel="import"
+          href="bower_components/file-input/file-input.html">
 
     <style is="custom-style" include="iron-flex iron-flex-alignment">
-        </style>
+    </style>
 
     <link href="/stylesheets/style.css" rel="stylesheet">
     <link href="/stylesheets/admin.css" rel="stylesheet">
@@ -42,17 +45,19 @@
 
 
 <body class="fullbleed layout vertical">
-    <paper-scroll-header-panel class="flex">
-        <paper-toolbar>
-            <div>Better Knowledge</div>
-        </paper-toolbar>
+<paper-scroll-header-panel class="flex">
+    <!-- header -->
+    <paper-toolbar>
+        <div>Better Knowledge</div>
+    </paper-toolbar>
+    <!-- content -->
+    <div>
         <section>
             <paper-material elevation="1">
                 <form is="iron-form" id="categoryForm" method="post" action="/admin/category/add">
                     <div class="layout vertical start-justified">
-                        <div class="layout horizontal" >
+                        <div class="layout horizontal">
                             <paper-input name="categoryName" label="name" class="flex"></paper-input>
-                            <paper-input name="categoryImage" label="image" type="file" class="flex"></paper-input>
                         </div>
                         <paper-input name="categoryDescription" label="description"></paper-input>
                         <paper-button raised onclick="submitForm()">Submit</paper-button>
@@ -62,11 +67,21 @@
                             }
                         </script>
                     </div>
-                    </div>
                 </form>
             </paper-material>
         </section>
-    </paper-scroll-header-panel>
+        <section>
+                <iron-list item="<%- JSON.stringify(categoryList) %>;" as="category" style="height:300px" >
+                    <template>
+                        <div>
+                            cc
+                        </div>
+                    </template>
+                </iron-list>
+        </section>
+    </div>
+
+</paper-scroll-header-panel>
 </body>
 
 </html>
