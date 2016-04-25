@@ -24,6 +24,7 @@ router.post('/category/add',upload.single('categoryImage'),function(req,res){
         description :req.body.categoryDescription
     }
     categoryModel.add(category);
+    res.redirect('/admin');
 });
 
 module.exports = router;

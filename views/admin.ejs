@@ -33,7 +33,13 @@
           href="bower_components/iron-list/iron-list.html">
 
     <link rel="import"
+          href="bower_components/iron-ajax/iron-ajax.html">
+
+    <link rel="import"
           href="bower_components/file-input/file-input.html">
+
+    <link rel="import"
+          href="bk_components/category-list.html">
 
     <style is="custom-style" include="iron-flex iron-flex-alignment">
     </style>
@@ -54,10 +60,11 @@
     <div>
         <section>
             <paper-material elevation="1">
-                <form is="iron-form" id="categoryForm" method="post" action="/admin/category/add">
+                <form is="iron-form" id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
                     <div class="layout vertical start-justified">
                         <div class="layout horizontal">
                             <paper-input name="categoryName" label="name" class="flex"></paper-input>
+                            <!--<input name="categoryImage" type="file" />-->
                         </div>
                         <paper-input name="categoryDescription" label="description"></paper-input>
                         <paper-button raised onclick="submitForm()">Submit</paper-button>
@@ -71,13 +78,7 @@
             </paper-material>
         </section>
         <section>
-                <iron-list item="<%- JSON.stringify(categoryList) %>;" as="category" style="height:300px" >
-                    <template>
-                        <div>
-                            cc
-                        </div>
-                    </template>
-                </iron-list>
+            <category-list category-List='<%- JSON.stringify(categoryList) %>' class="flex" ></category-list>
         </section>
     </div>
 

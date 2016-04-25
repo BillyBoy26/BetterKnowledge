@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="category-list">
+
+    <template>
+        <div>
+            Liste de catégories :
+        </div>
+        <iron-list items="{{categoryList}}" as="category">
+            <template>
+                <paper-card heading="[[category.name]]" elevation="3">
+                    <div class="card-content">[[category.description]]</div>
+                    <!--<div class="card-actions">-->
+                        <!--<paper-button>Some action</paper-button>-->
+                    <!--</div>-->
+                </paper-card>
+            </template>
+        </iron-list>
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'category-list',
+            properties: {
+                categoryList: Array
+            }
+        });
+    </script>
+
+</dom-module>
