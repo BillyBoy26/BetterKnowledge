@@ -4,8 +4,8 @@ var query = require('./connexionPostgres');
 
 var add = function (category){
     if(category.name && category.description) {
-        query("INSERT INTO bk_category.t_category_cat(cat_name,cat_description) values($1,$2)",
-            [category.name, category.description],function(err,rows,fields){
+        query("INSERT INTO bk_category.t_category_cat(cat_name,cat_description,cat_image_path) values($1,$2,$3)",
+            [category.name, category.description,category.imagePath],function(err,rows,fields){
                 if(err){
                     console.error(err);
                     throw err;

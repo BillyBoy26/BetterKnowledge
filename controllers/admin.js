@@ -3,7 +3,16 @@ var router = express.Router();
 var categoryModel = require('../models/categoryModel');
 var multer = require('multer');
 var path = require('path');
-var upload = multer({dest : path.join(__dirname,'/../upload/category/')});
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'upload/category')
+    },
+    filename: function (req, file, cb) {
+        cb(null, 'cat_'+ Date.now()  + '_' + file.originalname)
+    }
+});
+
+var upload = multer({ storage: storage })
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -18,13 +27,12 @@ router.get('/', function(req, res) {
 
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
     console.log(req.file);
-    console.log(req.files);
     var category = {
         name:req.body.categoryName,
-        description :req.body.categoryDescription
+        description :req.body.categoryDescription,
+        imagePath:req.file.path
     }
     categoryModel.add(category);
-    res.redirect('/admin');
 });
 
 module.exports = router;

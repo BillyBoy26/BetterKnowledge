@@ -60,11 +60,11 @@
     <div>
         <section>
             <paper-material elevation="1">
-                <form is="iron-form" id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
+                <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
                     <div class="layout vertical start-justified">
                         <div class="layout horizontal">
                             <paper-input name="categoryName" label="name" class="flex"></paper-input>
-                            <!--<input name="categoryImage" type="file" />-->
+                            <input name="categoryImage" type="file">
                         </div>
                         <paper-input name="categoryDescription" label="description"></paper-input>
                         <paper-button raised onclick="submitForm()">Submit</paper-button>
