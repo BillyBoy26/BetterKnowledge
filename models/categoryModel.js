@@ -17,7 +17,7 @@ var add = function (category){
 };
 
 var findAll = function(callback){
-    query("SELECT cat_id,cat_name,cat_description FROM bk_category.t_category_cat ORDER BY update_date desc",{},function(err,rows,fields){
+    query("SELECT cat_id,cat_name,cat_description,cat_image_path FROM bk_category.t_category_cat ORDER BY update_date desc",{},function(err,rows,fields){
             if(err){
                 console.error(err);
                 throw err;
@@ -30,7 +30,8 @@ var findAll = function(callback){
                     var category = {
                         id: row.cat_id,
                         name: row.cat_name,
-                        description: row.cat_description
+                        description: row.cat_description,
+                        imagePath:row.cat_image_path
                     };
                     categoryList.push(category);
                 }
