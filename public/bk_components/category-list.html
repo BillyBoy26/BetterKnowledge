@@ -12,7 +12,7 @@
             <template>
                 <paper-card heading="[[category.name]]" elevation="3">
                     <div class="card-content">
-                        <iron-image sizing="contains" src="[[category.imagePath]]" ></iron-image>
+                        <iron-image sizing="cover" preload src="[[category.imagePath]]" ></iron-image>
                         <div>[[category.description]]</div>
                     </div>
                     <!--<div class="card-actions">-->
@@ -25,9 +25,8 @@
 
     <style>
         iron-image{
-            width:40px;
-            height:40px;
-            border-radius:20px;
+            width:150px;
+            height:150px;
         }
     </style>
 
@@ -36,7 +35,7 @@
         Polymer({
             is: 'category-list',
             properties: {
-                categoryList: Array
+                categoryList: Array,
             }
         });
     </script>
