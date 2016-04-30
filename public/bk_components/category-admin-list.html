@@ -5,10 +5,10 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 
-<dom-module id="category-list">
+<dom-module id="category-admin-list">
 
     <template>
-        <iron-list items="{{categoryList}}" as="category" grid>
+        <iron-list items="{{categoryList}}" as="category">
             <template>
                 <paper-card heading="[[category.name]]" elevation="3">
                     <div class="card-content">
@@ -16,7 +16,7 @@
                         <div>[[category.description]]</div>
                     </div>
                     <!--<div class="card-actions">-->
-                    <!--<paper-button>Some action</paper-button>-->
+                        <!--<paper-button>Some action</paper-button>-->
                     <!--</div>-->
                 </paper-card>
             </template>
@@ -34,7 +34,7 @@
     <script>
 
         Polymer({
-            is: 'category-list',
+            is: 'category-admin-list',
             properties: {
                 categoryList: Array
             }

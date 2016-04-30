@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var categoryModel = require('../models/categoryModel');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.render('accueil');
+  categoryModel.findAll(function(categoryList){
+    res.render('accueil',{
+      categoryList:categoryList
+    });
+  });
 });
 
 module.exports = router;

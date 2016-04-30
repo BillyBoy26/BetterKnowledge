@@ -38,8 +38,7 @@
     <link rel="import"
           href="bower_components/file-input/file-input.html">
 
-    <link rel="import"
-          href="bk_components/category-list.html">
+    <link rel="import" href="bk_components/category-admin-list.html">
 
     <style is="custom-style" include="iron-flex iron-flex-alignment">
     </style>
@@ -78,7 +77,7 @@
             </paper-material>
         </section>
         <section>
-            <category-list category-List='<%- JSON.stringify(categoryList) %>' class="flex" ></category-list>
+            <category-admin-list category-List='<%- JSON.stringify(categoryList) %> true' class="flex" ></category-admin-list>
         </section>
     </div>
 
