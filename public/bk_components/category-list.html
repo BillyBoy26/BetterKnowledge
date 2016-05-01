@@ -8,24 +8,26 @@
 <dom-module id="category-list">
 
     <template>
-        <iron-list items="{{categoryList}}" as="category" grid$="{{grid}}">
+        <iron-list id="monIronList" items="{{categoryList}}" as="category" grid$="{{grid}}">
             <template>
-                <paper-card heading="[[category.name]]" elevation="3">
-                    <div class="card-content">
-                        <iron-image sizing="cover" preload src="[[category.imagePath]]" ></iron-image>
-                    </div>
-                    <!--<div class="card-actions">-->
-                    <!--<paper-button>Some action</paper-button>-->
-                    <!--</div>-->
+                <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white" elevation="5">
+                    <div class="card-content">[[category.description]]</div>
                 </paper-card>
             </template>
         </iron-list>
     </template>
 
     <style>
-        iron-image{
-            width:150px;
-            height:150px;
+        iron-list{
+            height:900px;
+        }
+        paper-card{
+            width:300px;
+            height:300px;
+            padding: 12px;
+        }
+        paper-card.white {
+            --paper-card-header-color: #fff;
         }
     </style>
 
