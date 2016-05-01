@@ -8,12 +8,11 @@
 <dom-module id="category-list">
 
     <template>
-        <iron-list items="{{categoryList}}" as="category" grid>
+        <iron-list items="{{categoryList}}" as="category" grid$="{{grid}}">
             <template>
                 <paper-card heading="[[category.name]]" elevation="3">
                     <div class="card-content">
                         <iron-image sizing="cover" preload src="[[category.imagePath]]" ></iron-image>
-                        <div>[[category.description]]</div>
                     </div>
                     <!--<div class="card-actions">-->
                     <!--<paper-button>Some action</paper-button>-->
@@ -36,6 +35,7 @@
             is: 'category-list',
             properties: {
                 categoryList: Array,
+                grid: Boolean
             }
         });
     </script>
