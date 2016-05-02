@@ -4,6 +4,9 @@
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
 
 <dom-module id="category-admin-list">
 
@@ -15,12 +18,15 @@
                         <iron-image sizing="contains" src="[[category.imagePath]]" ></iron-image>
                         <div>[[category.description]]</div>
                     </div>
-                    <!--<div class="card-actions">-->
-                        <!--<paper-button>Some action</paper-button>-->
-                    <!--</div>-->
+                    <div class="card-actions">
+                        <iron-icon icon="delete" on-click="submitForm"></iron-icon>
+                    </div>
                 </paper-card>
             </template>
         </iron-list>
+        <form is="iron-form" id="hiddenForm"  method="post" enctype="text/plain">
+            <input type="text"  id="categoryId" name="catId"/>
+        </form>
     </template>
 
     <style>
@@ -36,7 +42,16 @@
         Polymer({
             is: 'category-admin-list',
             properties: {
-                categoryList: Array
+                categoryList: Array,
+                postPath :String
+            },
+            submitForm : function (element) {
+                var hiddenForm = document.getElementById('hiddenForm');
+                hiddenForm.action = this.postPath + '/delete';
+                var idToDelete = element.model.category.id;
+                document.getElementById('categoryId').setAttribute("value", idToDelete);
+                hiddenForm.submit();
+                //this.$.hiddenForm.submit();
             }
         });
     </script>

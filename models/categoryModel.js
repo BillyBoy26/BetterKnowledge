@@ -16,6 +16,19 @@ var add = function (category){
 
 };
 
+var deleteById = function(categoryId) {
+    if(categoryId) {
+        query("DELETE FROM bk_category.t_category_cat WHERE cat_id = $1",
+            [categoryId],function(err,rows,fields){
+                if(err){
+                    console.error(err);
+                    throw err;
+                }
+                console.log("Delete category done");
+            });
+    }
+};
+
 var findAll = function(callback){
     query("SELECT cat_id,cat_name,cat_description,cat_image_path FROM bk_category.t_category_cat ORDER BY update_date desc",{},function(err,rows,fields){
             if(err){
@@ -38,9 +51,10 @@ var findAll = function(callback){
             }
             callback(categoryList);
      });
-}
+};
 
 module.exports = {
     add : add,
+    deleteById : deleteById,
     findAll :findAll
 };
