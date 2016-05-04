@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
     var fileName=null;
-    if(req.file.path) {
+    if(req.file && req.file.path) {
         fileName = req.file.path.replace('public', '');
         fileName = strUtils.replaceAll(fileName, '\\','/');
         console.log(fileName);
@@ -38,6 +38,12 @@ router.post('/category/add',upload.single('categoryImage'),function(req,res){
         imagePath:fileName
     }
     categoryModel.add(category);
+    res.redirect('/admin');
+});
+
+router.post('/category/delete',function(req,res){
+    var categoryId = req.body.catId;
+    categoryModel.deleteById(categoryId);
     res.redirect('/admin');
 });
 
