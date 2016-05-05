@@ -100,7 +100,7 @@
                                 <input name="categoryImage" type="file">
                             </div>
                             <paper-input name="categoryDescription" label="description"></paper-input>
-                            <paper-button raised onclick="submitForm()">Submit</paper-button>
+                            <paper-fab icon="add" mini onclick="submitForm()"></paper-fab>
                             <script>
                                 function submitForm() {
                                     document.getElementById('categoryForm').submit();
@@ -110,7 +110,7 @@
                     </form>
                 </paper-material>
             </section>
-            <section>
+            <section class="breathSpace">
                 <category-admin-list category-List='<%- JSON.stringify(categoryList) %>' post-path='/admin/category' class="flex" ></category-admin-list>
             </section>
         </div>
