@@ -23,3 +23,9 @@
 .breathSpace{
     margin-top:20px;
 }
+
+.addButton{
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
