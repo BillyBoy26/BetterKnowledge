@@ -8,9 +8,16 @@
 <dom-module id="category-list">
     <template>
         <template is="dom-repeat" items="{{categoryList}}" as="category" class="flex mainlist" >
-                <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white" elevation="5">
-                    <div class="card-content">[[category.description]]</div>
-                </paper-card>
+                <!--<paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white" elevation="5">-->
+                    <!--<div class="card-content">[[category.description]]</div>-->
+                <!--</paper-card>-->
+            <div class="categoryContainer">
+                <div class="categoryContent">
+                    <iron-image src="[[category.imagePath]]" sizing="cover"></iron-image>
+                    <div class="detail">[[category.name]]</div>
+                </div>
+            </div>
+
         </template>
     </template>
 
@@ -18,16 +25,36 @@
     </style>
 
     <style>
-        iron-list{
-            height:900px;
+
+        .categoryContainer{
+            display:inline-flex;
         }
-        paper-card{
-            width:300px;
-            padding: 12px;
+        .categoryContent {
+            @apply(--layout);
+            width: 300px;
+            height: 300px;
+            margin: 8px;
+            display:block;
         }
-        paper-card.white {
-            --paper-card-header-color: #fff;
+
+
+        .categoryContent > iron-image {
+            @apply(--layout-flex);
         }
+        .categoryContent > .detail {
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: 100;
+            opacity: 0;
+            transition: opacity 0.1s;
+        }
+
+
+        .categoryContent:hover .detail{
+            opacity: 1;
+        }
+
     </style>
 
     <script>
