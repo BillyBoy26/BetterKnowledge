@@ -1,8 +1,21 @@
-paper-material {
-    border-radius: 2px;
-    height: 100%;
-    padding: 16px 0 16px 0;
-    width: calc(98.66% - 16px);
-    margin: 16px auto;
-    background: white;
+.menu-title{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.menuPanel{
+    color :#737373;
+}
+
+.menuToolbar{
+    color :#737373;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.22);
+}
+
+.menuPanel paper-item{
+    padding: 0 16px;
+}
+.menuPanel iron-icon{
+    margin-right: 37px;
 }

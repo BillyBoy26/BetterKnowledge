@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
     var fileName=null;
     if(req.file && req.file.path) {
+        //TODO il dot y avoir moyen de faire mieux que ca
         fileName = req.file.path.replace('public', '');
         fileName = strUtils.replaceAll(fileName, '\\','/');
         console.log(fileName);

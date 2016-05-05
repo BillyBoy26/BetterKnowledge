@@ -7,6 +7,9 @@
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="category-admin-list">
 
@@ -14,27 +17,56 @@
         <iron-list items="{{categoryList}}" as="category">
             <template>
                 <paper-card heading="[[category.name]]" elevation="3">
+                    <iron-icon class="deleteIcon" icon="delete" on-click="submitForm"></iron-icon>
                     <div class="card-content">
-                        <iron-image sizing="contains" src="[[category.imagePath]]" ></iron-image>
-                        <div>[[category.description]]</div>
+                        <div class="layout horizontal wrap">
+                            <div>
+                                <div>[[category.description]]</div>
+                                <div class="info">[[category.updateDate]]</div>
+                            </div>
+                            <iron-image sizing="contains" src="[[category.imagePath]]" ></iron-image>
+                        </div>
                     </div>
-                    <div class="card-actions">
-                        <iron-icon icon="delete" on-click="submitForm"></iron-icon>
-                    </div>
+                    <paper-fab mini icon="create"></paper-fab>
                 </paper-card>
             </template>
         </iron-list>
         <form is="iron-form" id="hiddenForm"  method="post" enctype="text/plain">
-            <input type="text"  id="categoryId" name="catId"/>
+            <input type="hidden"  id="categoryId" name="catId"/>
         </form>
     </template>
 
     <style>
         iron-image{
-            width:40px;
-            height:40px;
-            border-radius:20px;
+            width:80px;
+            height:80px;
+            margin-left :15px;
         }
+
+        .info {
+            font-style: italic;
+            font-size: 14px;
+            color: #696969;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        paper-fab {
+            position: absolute;
+            bottom: 3vh;
+            right: 3vw;
+            background: #4DD0E1;
+        }
+
+        .deleteIcon {
+            float: right;
+            margin: 2vh 2vw;
+        }
+
+
+    </style>
+
+    <style include="iron-flex iron-flex-alignment">
     </style>
 
     <script>

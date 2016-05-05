@@ -7,11 +7,12 @@ html{
 body {
   height: 100%;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Roboto,"Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-paper-scroll-header-panel{
+paper-scroll-header-panel {
   height: 100%;
+}
 .header{
   height:100px;
   width:100%;

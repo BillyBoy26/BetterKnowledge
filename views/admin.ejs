@@ -37,6 +37,16 @@
 
     <link rel="import"
           href="bower_components/file-input/file-input.html">
+    <link rel="import"
+          href="bower_components/paper-drawer-panel/paper-drawer-panel.html">
+    <link rel="import"
+          href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import"
+          href="bower_components/iron-icons/iron-icons.html">
+    <link rel="import"
+          href="bower_components/paper-menu/paper-menu.html">
+    <link rel="import"
+          href="bower_components/paper-item/paper-item.html">
 
     <link rel="import" href="bk_components/category-admin-list.html">
 
@@ -50,38 +60,65 @@
 
 
 <body class="fullbleed layout vertical">
-<paper-scroll-header-panel class="flex">
-    <!-- header -->
-    <paper-toolbar>
-        <div>Better Knowledge</div>
-    </paper-toolbar>
-    <!-- content -->
-    <div>
-        <section>
-            <paper-material elevation="1">
-                <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
-                    <div class="layout vertical start-justified">
-                        <div class="layout horizontal">
-                            <paper-input name="categoryName" label="name" class="flex"></paper-input>
-                            <input name="categoryImage" type="file">
-                        </div>
-                        <paper-input name="categoryDescription" label="description"></paper-input>
-                        <paper-button raised onclick="submitForm()">Submit</paper-button>
-                        <script>
-                            function submitForm() {
-                                document.getElementById('categoryForm').submit();
-                            }
-                        </script>
-                    </div>
-                </form>
-            </paper-material>
-        </section>
-        <section>
-            <category-admin-list category-List='<%- JSON.stringify(categoryList) %>' post-path='/admin/category' class="flex" ></category-admin-list>
-        </section>
+
+<paper-drawer-panel>
+    <div drawer class="menuPanel">
+        <paper-toolbar class="menuToolbar">
+            <div class="menu-title">
+                Menu
+            </div>
+        </paper-toolbar>
+        <paper-menu selected="0">
+            <paper-item>
+                <iron-icon icon="folder"></iron-icon>
+                <span>Catégories</span>
+            </paper-item>
+            <paper-item>
+                <iron-icon icon="face"></iron-icon>
+                <span>Utilisateurs</span>
+            </paper-item>
+        </paper-menu>
+
+
+
     </div>
 
-</paper-scroll-header-panel>
+    <paper-scroll-header-panel main class="flex">
+        <!-- header -->
+        <paper-toolbar>
+            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+            <div>Better Knowledge</div>
+        </paper-toolbar>
+        <!-- content -->
+        <div>
+            <section>
+                <paper-material elevation="1">
+                    <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
+                        <div class="layout vertical start-justified">
+                            <div class="layout horizontal">
+                                <paper-input name="categoryName" label="name" class="flex"></paper-input>
+                                <input name="categoryImage" type="file">
+                            </div>
+                            <paper-input name="categoryDescription" label="description"></paper-input>
+                            <paper-button raised onclick="submitForm()">Submit</paper-button>
+                            <script>
+                                function submitForm() {
+                                    document.getElementById('categoryForm').submit();
+                                }
+                            </script>
+                        </div>
+                    </form>
+                </paper-material>
+            </section>
+            <section>
+                <category-admin-list category-List='<%- JSON.stringify(categoryList) %>' post-path='/admin/category' class="flex" ></category-admin-list>
+            </section>
+        </div>
+
+    </paper-scroll-header-panel>
+
+</paper-drawer-panel>
+
 </body>
 
 </html>
