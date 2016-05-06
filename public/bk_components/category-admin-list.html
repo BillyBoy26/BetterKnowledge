@@ -17,10 +17,7 @@
         <template is="dom-repeat" items="{{categoryList}}" as="category"  class="flex mainlist">
                 <paper-card heading="[[category.name]]" image="[[category.imagePath]]">
 
-                    <div class="card-actions">
-                        <paper-icon-button  icon="create"></paper-icon-button>
-                        <paper-icon-button  icon="delete" on-click="submitForm"></paper-icon-button>
-                    </div>
+
                     <div class="card-content">
                         <div class="layout horizontal">
                             <div>
@@ -28,6 +25,10 @@
                                 <div class="info">[[category.updateDate]]</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-actions">
+                        <paper-icon-button  icon="create"></paper-icon-button>
+                        <paper-icon-button  icon="delete" on-click="submitForm"></paper-icon-button>
                     </div>
                 </paper-card>
         </template>
@@ -38,6 +39,10 @@
 
     <style>
 
+        :host{
+            --paper-card-header-color : white;
+        }
+
         .info {
             font-style: italic;
             font-size: 14px;
@@ -45,6 +50,7 @@
             padding-top: 0;
             padding-bottom: 0;
         }
+
 
 
 
