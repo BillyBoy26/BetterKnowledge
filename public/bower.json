@@ -36,6 +36,8 @@
     "paper-card": "PolymerElements/paper-card#^1.1.1",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.1.2",
     "paper-fab": "PolymerElements/paper-fab#^1.2.0",
-    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^1.0.9"
+    "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^1.0.9",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.4",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.2"
   }
 }

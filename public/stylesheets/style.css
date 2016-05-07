@@ -18,11 +18,11 @@ paper-scroll-header-panel {
   width: 100%;
 }
 
-paper-button {
-  display: block;
-  background: #4285f4;
-  color: #fff;
-}
+/*paper-button {*/
+  /*display: block;*/
+  /*background: #4285f4;*/
+  /*color: #fff;*/
+/*}*/
 paper-menu {
   display: block;
 }
