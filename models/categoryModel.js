@@ -16,6 +16,19 @@ var add = function (category){
     }
 
 };
+var update = function (category){
+    if(category.name && category.description) {
+        query("UPDATE bk_category.t_category_cat SET cat_name = $1 ,cat_description = $2 WHERE cat_id = $3",
+            [category.name, category.description,category.id],function(err,rows,fields){
+                if(err){
+                    console.error(err);
+                    throw err;
+                }
+                console.log("Update category done");
+            });
+    }
+
+};
 
 var deleteById = function(categoryId) {
     if(categoryId) {
@@ -57,6 +70,7 @@ var findAll = function(callback){
 
 module.exports = {
     add : add,
+    update :update,
     deleteById : deleteById,
     findAll :findAll
 };

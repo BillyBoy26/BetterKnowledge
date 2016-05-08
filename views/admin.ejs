@@ -47,10 +47,7 @@
           href="bower_components/paper-menu/paper-menu.html">
     <link rel="import"
           href="bower_components/paper-item/paper-item.html">
-    <link rel="import"
-          href="bower_components/paper-dialog/paper-dialog.html">
-    <link rel="import" href="bower_components/neon-animation/animations/scale-up-animation.html">
-    <link rel="import" href="bower_components/neon-animation/animations/fade-out-animation.html">
+
 
     <link rel="import" href="bk_components/category-admin-list.html">
 
@@ -95,35 +92,6 @@
         </paper-toolbar>
         <!-- content -->
         <div>
-            <section>
-                <paper-fab class="addButton" icon="add" onclick="togglePopup()"></paper-fab>
-                <script>
-                    function togglePopup() {
-                        document.getElementById('addPopup').toggle();
-                    }
-                </script>
-                <paper-dialog id="addPopup" entry-animation="scale-up-animation"
-                              exit-animation="fade-out-animation">
-                    <h2>Ajouter une catégorie</h2>
-                    <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
-                        <div class="layout vertical start-justified">
-                            <paper-input name="categoryName" label="name" class="flex"></paper-input>
-                            <paper-input name="categoryImage" type="file" label="image" class="flex"></paper-input>
-                            <paper-input name="categoryDescription" label="description"></paper-input>
-                            <div class="buttons">
-                                <paper-button dialog-dismiss>Annuler</paper-button>
-                                <paper-button dialog-confirm onclick="submitForm()">Créer</paper-button>
-                            </div>
-                            <script>
-                                function submitForm() {
-                                    document.getElementById('categoryForm').submit();
-                                }
-                            </script>
-                        </div>
-                    </form>
-
-                </paper-dialog>
-            </section>
             <section class="breathSpace">
                 <category-admin-list category-List='<%- JSON.stringify(categoryList) %>' post-path='/admin/category' class="flex" ></category-admin-list>
             </section>

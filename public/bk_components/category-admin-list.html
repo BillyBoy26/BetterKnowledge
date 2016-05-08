@@ -11,13 +11,15 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import"
+      href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
 
 <dom-module id="category-admin-list">
     <template>
         <template is="dom-repeat" items="{{categoryList}}" as="category"  class="flex mainlist">
                 <paper-card heading="[[category.name]]" image="[[category.imagePath]]">
-
-
                     <div class="card-content">
                         <div class="layout horizontal">
                             <div>
@@ -27,14 +29,32 @@
                         </div>
                     </div>
                     <div class="card-actions">
-                        <paper-icon-button  icon="create"></paper-icon-button>
-                        <paper-icon-button  icon="delete" on-click="submitForm"></paper-icon-button>
+                        <paper-icon-button  icon="create" on-click="toggleUpdatePopup"></paper-icon-button>
+                        <paper-icon-button  icon="delete" on-click="submitDeleteForm"></paper-icon-button>
                     </div>
                 </paper-card>
         </template>
         <form is="iron-form" id="hiddenForm"  method="post" enctype="text/plain">
             <input type="hidden"  id="categoryId" name="catId"/>
         </form>
+        <paper-fab class="addButton" icon="add" on-click="toggleCreatePopup"></paper-fab>
+        <paper-dialog id="addPopup" entry-animation="scale-up-animation"
+                      exit-animation="fade-out-animation">
+            <h2 id="popupTitle">Ajouter une catégorie</h2>
+            <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
+                <div class="layout vertical start-justified">
+                    <paper-input id="categoryName" name="categoryName" label="name" class="flex"></paper-input>
+                    <paper-input id="categoryImage" name="categoryImage" type="file" label="image" class="flex"></paper-input>
+                    <paper-input id="categoryDescription" name="categoryDescription" label="description"></paper-input>
+                    <input type="hidden"  id="catId" name="catId"/>
+                    <div class="buttons">
+                        <paper-button dialog-dismiss>Annuler</paper-button>
+                        <paper-button dialog-confirm on-click="submitCreateForm" id="createButton">Créer</paper-button>
+                    </div>
+                </div>
+            </form>
+
+        </paper-dialog>
     </template>
 
     <style>
@@ -67,13 +87,37 @@
                 categoryList: Array,
                 postPath :String
             },
-            submitForm : function (element) {
+            submitDeleteForm : function (element) {
                 var hiddenForm = document.getElementById('hiddenForm');
                 hiddenForm.action = this.postPath + '/delete';
                 var idToDelete = element.model.category.id;
                 document.getElementById('categoryId').setAttribute("value", idToDelete);
                 hiddenForm.submit();
                 //this.$.hiddenForm.submit();
+            },
+            submitCreateForm : function () {
+                document.getElementById('categoryForm').submit();
+            },
+            //TODO réussir à passer un argument pour faire une seule fonction
+            toggleUpdatePopup : function(element){
+                var category = element.model.category;
+                document.getElementById("categoryName").value = category.name;
+                document.getElementById("categoryDescription").value = category.description;
+                document.getElementById("categoryForm").action = this.postPath + '/update';
+                var idToDelete = element.model.category.id;
+                document.getElementById('catId').setAttribute("value", idToDelete);
+                document.getElementById("popupTitle").innerHTML  = 'Mettre à jour la catégorie';
+                document.getElementById("createButton").innerHTML  = 'Mettre à jour';
+
+                document.getElementById('addPopup').toggle();
+            },
+            toggleCreatePopup : function(){
+                document.getElementById("categoryName").value = '';
+                document.getElementById("categoryDescription").value = '';
+                document.getElementById("categoryForm").action = this.postPath + '/add';
+                document.getElementById("popupTitle").innerHTML  = 'Ajouter une catégorie';
+                document.getElementById("createButton").innerHTML  = 'Créer';
+                document.getElementById('addPopup').toggle();
             }
         });
     </script>
