@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+
+<dom-module id="connection-popup">
+    <template>
+        <paper-icon-button icon="menu" on-click='toggle'></paper-icon-button>
+        <paper-dialog id="mainPopup">
+            <div class="vertical layout wrap">
+                <div>Connection</div>
+                <paper-input name="email" label="Addresse Email">
+                    <iron-icon icon="mail" prefix></iron-icon>
+                </paper-input>
+                <paper-input name="password" label="Mot de passe" type="password">
+                    <iron-icon icon="lock" prefix></iron-icon>
+                </paper-input>
+                <div>Ou</div>
+                <div>Connection avec</div>
+                <div class="horizontal layout wrap">
+                    <paper-fab src="../images/socialMediaIcon/facebook.svg" mini class="facebookButton">
+                    </paper-fab>
+                    <paper-fab src="../images/socialMediaIcon/twitter.svg" mini class="twitterButton">
+                    </paper-fab>
+                    <paper-fab src="../images/socialMediaIcon/googleplus.svg" mini class="googleButton">
+                    </paper-fab>
+                </div>
+                <div>
+                    Nouveau venu ?
+                </div>
+                <paper-button>
+                    S'inscrire
+                </paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+
+    <style include="iron-flex iron-flex-alignment">
+    </style>
+
+    <script>
+
+        Polymer({
+            is: 'connection-popup',
+            toggle : function(){
+                document.getElementById("mainPopup").toggle();
+            }
+        });
+    </script>
+</dom-module>
+
