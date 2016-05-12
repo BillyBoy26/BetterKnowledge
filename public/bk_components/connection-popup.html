@@ -6,6 +6,7 @@
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <dom-module id="connection-popup">
@@ -13,6 +14,7 @@
         <paper-icon-button icon="menu" on-click='toggle'></paper-icon-button>
         <paper-dialog id="mainPopup">
             <div class="vertical layout wrap center container">
+                <iron-image src="../images/icon/iconLogin.jpg" style="margin:5px"></iron-image>
                 <h2>Connection</h2>
                 <paper-input name="email" label="Adresse Email" class="paper-input">
                     <iron-icon icon="mail" prefix></iron-icon>
