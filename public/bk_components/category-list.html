@@ -13,46 +13,46 @@
                 <!--</paper-card>-->
             <div class="categoryContainer">
                 <div class="categoryContent">
-                    <iron-image src="[[category.imagePath]]" sizing="cover"></iron-image>
-                    <div class="detail">[[category.name]]</div>
+                    <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="5">
+                        <div class="card-content">[[category.description]]</div>
+                    </paper-card>
+                    <!--<iron-image src="[[category.imagePath]]" sizing="cover"></iron-image>-->
+                    <!--<div class="name">[[category.name]]</div>-->
+                    <!--<div class="description">[[category.description]]</div>-->
                 </div>
+
+            </div>
             </div>
 
         </template>
     </template>
-
-    <style include="iron-flex iron-flex-alignment">
-    </style>
 
     <style>
 
         .categoryContainer{
             display:inline-flex;
         }
+
         .categoryContent {
-            @apply(--layout);
-            width: 300px;
-            height: 300px;
             margin: 8px;
-            display:block;
         }
 
-
-        .categoryContent > iron-image {
-            @apply(--layout-flex);
-        }
-        .categoryContent > .detail {
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
-            color: white;
-            font-size: 20px;
-            font-weight: 100;
-            opacity: 0;
-            transition: opacity 0.1s;
+        paper-card{
+            height:300px;
+            width: 300px;
         }
 
+        :host{
+            --iron-image-height: 229px;;
+        }
 
-        .categoryContent:hover .detail{
-            opacity: 1;
+        paper-card.white {
+            --paper-card-header-color:#FFF;
+        }
+
+        .card-content{
+            height:24px;
+            overflow:hidden;
         }
 
     </style>
