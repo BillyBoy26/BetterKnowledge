@@ -1,44 +1,57 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+
+
+
 
 <dom-module id="category-list">
     <template>
-        <template is="dom-repeat" items="{{categoryList}}" as="category" class="flex mainlist" >
-                <!--<paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white" elevation="5">-->
-                    <!--<div class="card-content">[[category.description]]</div>-->
-                <!--</paper-card>-->
-            <div class="categoryContainer">
+        <iron-list id="myIronList" items="{{categoryList}}" as="category" grid$="{{grid}}">
+            <template>
                 <div class="categoryContent">
-                    <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="5">
-                        <div class="card-content">[[category.description]]</div>
+                    <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="3">
+                        <div class="card-content">
+                            <div class="info">[[category.updateDate]]</div>
+                        </div>
+                        <div class ="card-actions">
+                            <paper-button id="discuss" on-tap="launchDiscussion" >Discuss about it</paper-button>
+                            <paper-icon-button icon="hardware:keyboard-arrow-up" title="more info" onclick="_toggle()" style="float:right;">
+                            </paper-icon-button>
+                            <iron-collapse id="more-info" style="width:100%;">
+                                [[category.description]]
+                            </iron-collapse>
+                            <script>
+                                function _toggle() {
+                                    var moreInfo = document.getElementById('more-info');
+                                    var iconButton = Polymer.dom(event).localTarget;
+                                    iconButton.icon = moreInfo.opened ? 'hardware:keyboard-arrow-up'
+                                            : 'hardware:keyboard-arrow-down';
+                                    moreInfo.toggle();
+                                }
+                            </script>
+                        </div>
                     </paper-card>
-                    <!--<iron-image src="[[category.imagePath]]" sizing="cover"></iron-image>-->
-                    <!--<div class="name">[[category.name]]</div>-->
-                    <!--<div class="description">[[category.description]]</div>-->
                 </div>
-
-            </div>
-            </div>
-
-        </template>
+            </template>
+        </iron-list>
     </template>
 
     <style>
 
-        .categoryContainer{
-            display:inline-flex;
-        }
-
-        .categoryContent {
-            margin: 8px;
+        iron-list{
+            height:100%;
         }
 
         paper-card{
-            height:300px;
             width: 300px;
         }
 
@@ -51,8 +64,14 @@
         }
 
         .card-content{
-            height:24px;
+            height:15px;
             overflow:hidden;
+        }
+
+        .info {
+            font-style: italic;
+            font-size: 14px;
+            color: #696969;
         }
 
     </style>
@@ -62,8 +81,15 @@
         Polymer({
             is: 'category-list',
             properties: {
-                categoryList: Array
+                categoryList: Array,
+                grid: Boolean
+            },
+
+
+            launchDiscussion : function(e){
+                alert("Tu as cru que ca allait marcher hein ?");
             }
+
         });
     </script>
 

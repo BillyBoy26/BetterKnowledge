@@ -38,6 +38,7 @@
     "paper-fab": "PolymerElements/paper-fab#^1.2.0",
     "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^1.0.9",
     "paper-dialog": "PolymerElements/paper-dialog#^1.0.4",
-    "neon-animation": "PolymerElements/neon-animation#^1.2.2"
+    "neon-animation": "PolymerElements/neon-animation#^1.2.2",
+    "iron-collapse": "PolymerElements/iron-collapse#^1.0.8"
   }
 }
