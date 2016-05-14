@@ -1,0 +1,97 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="connection-popup">
+    <template>
+        <paper-icon-button icon="menu" on-click='toggle'></paper-icon-button>
+        <paper-dialog id="mainPopup">
+            <div class="vertical layout wrap center container">
+                <iron-image src="../images/icon/iconLogin.jpg" style="margin:5px"></iron-image>
+                <h2>Connection</h2>
+                <paper-input name="email" label="Adresse Email" class="paper-input">
+                    <iron-icon icon="mail" prefix></iron-icon>
+                </paper-input>
+                <paper-input name="password" label="Mot de passe" type="password" class="paper-input">
+                    <iron-icon icon="lock" prefix></iron-icon>
+                </paper-input>
+                <div class="orLabel">Ou</div>
+                <paper-button id="facebookButton">
+                    Se connecter avec Facebook
+                </paper-button>
+                <paper-button  mini id="twitterButton">
+                    Se connecter avec Twitter
+                </paper-button>
+                <paper-button  mini id="googleButton">
+                    Se connecter avec Google+
+                </paper-button>
+                    <!--<paper-fab src="../images/socialMediaIcon/googleplus.svg" mini class="googleButton">-->
+                    <!--</paper-fab>-->
+                <div class="orLabel">
+                    Nouveau chez BetterKnowledge ?
+                </div>
+                <paper-button id="subscribeButton">
+                    S'inscrire
+                </paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+
+    <style>
+        :host{
+            --paper-button:{
+                color:white;
+                margin:5px 0;
+                width:100%;
+             }
+
+        }
+
+        .orLabel{
+            margin:10px 0;
+            font-size:18px;
+
+        }
+        .paper-input{
+            width:100%;
+        }
+
+        #facebookButton{
+            background:#39428f;
+
+        }
+        #twitterButton{
+            background:#2caee2;
+        }
+        #googleButton{
+            background:#cc4420;
+        }
+        #subscribeButton{
+            background: #fb3334;
+        }
+        .container{
+            width:300px;
+        }
+    </style>
+
+    <style include="iron-flex iron-flex-alignment">
+    </style>
+
+    <script>
+
+        Polymer({
+            is: 'connection-popup',
+            toggle : function(){
+                document.getElementById("mainPopup").toggle();
+            }
+        });
+    </script>
+</dom-module>
+

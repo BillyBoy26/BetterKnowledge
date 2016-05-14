@@ -22,7 +22,9 @@
     <link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
     <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
     <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+    <link rel="import" href="bower_components/paper-menu/paper-menu.html">
     <link rel="import" href="bk_components/category-list.html">
+    <link rel="import" href="bk_components/connection-popup.html">
 
 
     <link href="/stylesheets/style.css" rel="stylesheet">
@@ -36,14 +38,7 @@
             <section>
                 <paper-toolbar>
                     <span class="title">Better Knowledge</span>
-                    <paper-menu-button>
-                        <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-                        <paper-menu class="dropdown-content">
-                            <paper-item>
-                                <a href="/auth/facebook">Connection</a>
-                            </paper-item>
-                        </paper-menu>
-                    </paper-menu-button>
+                    <connection-popup></connection-popup>
                 </paper-toolbar>
             </section>
             <section>
