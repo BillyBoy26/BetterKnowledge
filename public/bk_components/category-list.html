@@ -36,6 +36,9 @@
                 </div>
             </template>
         </iron-list>
+        <form is="iron-form" id="hiddenForm" action="/accueil/launchDiscussion"  method="post" enctype="text/plain">
+            <input type="hidden"  id="categoryId" name="catId"/>
+        </form>
     </template>
 
     <style>
@@ -85,7 +88,10 @@
 
 
             launchDiscussion: function(element){
-                var category = element.model.category;
+                var hiddenForm = document.getElementById('hiddenForm');
+                var categorySelected = element.model.category.id;
+                document.getElementById('categoryId').setAttribute("value", categorySelected);
+                hiddenForm.submit();
             },
 
             toggle: function(element) {

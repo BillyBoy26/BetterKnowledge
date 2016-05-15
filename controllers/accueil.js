@@ -11,4 +11,10 @@ router.get('/', function(req, res) {
   });
 });
 
+router.post('/launchDiscussion',function(req,res){
+  var categoryId = req.body.catId;
+  res.redirect('/knowledgeRoom', categoryId);
+});
+
+
 module.exports = router;

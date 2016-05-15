@@ -43,6 +43,31 @@ var deleteById = function(categoryId) {
     }
 };
 
+var findById = function(categoryId, callback) {
+    if(categoryId) {
+        query("SELECT cat_id,cat_name,cat_description,cat_image_path,update_date FROM bk_category.t_category_cat FROM bk_category.t_category_cat WHERE cat_id = $1",
+            [categoryId],function(err,rows,fields){
+                if(err){
+                    console.error(err);
+                    throw err;
+                }
+                console.log("Search by id done");
+                if(rows){
+                    var row = rows[0];
+                    var category = {
+                        id: row.cat_id,
+                        name: row.cat_name,
+                        description: row.cat_description,
+                        imagePath:row.cat_image_path,
+                        updateDate:moment(row.update_date).format('DD/MM/YYYY, HH:MM')
+                    };
+                    callback(category);
+                }
+            });
+    }
+    callback();
+};
+
 var findAll = function(callback){
     query("SELECT cat_id,cat_name,cat_description,cat_image_path,update_date FROM bk_category.t_category_cat ORDER BY update_date desc",{},function(err,rows,fields){
             if(err){
@@ -72,5 +97,6 @@ module.exports = {
     add : add,
     update :update,
     deleteById : deleteById,
-    findAll :findAll
+    findAll :findAll,
+    findById : findById
 };

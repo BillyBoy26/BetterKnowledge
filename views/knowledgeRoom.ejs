@@ -57,6 +57,7 @@
                 console.log('onGruveoEmbedAPIReady');
                 var generated =<%- JSON.stringify(generated) %>;
                 var signature =<%- JSON.stringify(signature) %>;
+                alert(<%- JSON.stringify(category.name) %>)
                 embed = new Gruveo.Embed("myembed", {
                     width: 680,
                     height: 465,
