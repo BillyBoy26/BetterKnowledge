@@ -15,31 +15,24 @@
 
 <dom-module id="category-list">
     <template>
-        <iron-list id="myIronList" items="{{categoryList}}" as="category" grid$="{{grid}}">
+        <iron-list id="myIronList" items="{{categoryList}}" as="category" grid$="{{grid}}" selection-enabled >
             <template>
-                <div class="categoryContent">
-                    <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="3">
-                        <div class="card-content">
-                            <div class="info">[[category.updateDate]]</div>
-                        </div>
-                        <div class ="card-actions">
-                            <paper-button id="discuss" on-tap="launchDiscussion" >Discuss about it</paper-button>
-                            <paper-icon-button icon="hardware:keyboard-arrow-up" title="more info" onclick="_toggle()" style="float:right;">
-                            </paper-icon-button>
-                            <iron-collapse id="more-info" style="width:100%;">
-                                [[category.description]]
-                            </iron-collapse>
-                            <script>
-                                function _toggle() {
-                                    var moreInfo = document.getElementById('more-info');
-                                    var iconButton = Polymer.dom(event).localTarget;
-                                    iconButton.icon = moreInfo.opened ? 'hardware:keyboard-arrow-up'
-                                            : 'hardware:keyboard-arrow-down';
-                                    moreInfo.toggle();
-                                }
-                            </script>
-                        </div>
-                    </paper-card>
+                <div>
+                    <div class="categoryContent" tabindex$="[[tabIndex]]">
+                        <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="3">
+                            <div class="card-content">
+                                <div class="info">[[category.updateDate]]</div>
+                            </div>
+                            <div class ="card-actions">
+                                <paper-button id="discuss" on-tap="launchDiscussion" >Discuss about it</paper-button>
+                                <paper-icon-button icon="hardware:keyboard-arrow-up" title="more info" on-tap="toggle" style="float:right;">
+                                </paper-icon-button>
+                                <iron-collapse id="more-info" style="width:100%;">
+                                    [[category.description]]
+                                </iron-collapse>
+                            </div>
+                        </paper-card>
+                    </div>
                 </div>
             </template>
         </iron-list>
@@ -47,9 +40,14 @@
 
     <style>
 
-        iron-list{
-            height:100%;
+        iron-list {
+            --iron-list-items-container: {
+                 max-width: 600px;
+                 margin-top: 60px;
+                 margin-bottom: 60px;
+            };
         }
+
 
         paper-card{
             width: 300px;
@@ -86,9 +84,17 @@
             },
 
 
-            launchDiscussion : function(e){
-                alert("Tu as cru que ca allait marcher hein ?");
-            }
+            launchDiscussion: function(element){
+                var category = element.model.category;
+            },
+
+            toggle: function(element) {
+                var iconButton = Polymer.dom(event).localTarget;
+                var moreInfo = iconButton.nextElementSibling;
+                iconButton.icon = moreInfo.opened ? 'hardware:keyboard-arrow-up'
+                        : 'hardware:keyboard-arrow-down';
+                moreInfo.toggle();
+         }
 
         });
     </script>

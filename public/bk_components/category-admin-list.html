@@ -27,8 +27,8 @@
                             <div class="info">[[category.updateDate]]</div>
                         </div>
                         <div class="card-actions">
-                            <paper-icon-button  icon="create" on-click="toggleUpdatePopup"></paper-icon-button>
-                            <paper-icon-button  icon="delete" on-click="submitDeleteForm"></paper-icon-button>
+                            <paper-icon-button  icon="create" on-tap="toggleUpdatePopup"></paper-icon-button>
+                            <paper-icon-button  icon="delete" on-tap="submitDeleteForm"></paper-icon-button>
                         </div>
                     </paper-card>
                 </template>
@@ -38,7 +38,7 @@
         <form is="iron-form" id="hiddenForm"  method="post" enctype="text/plain">
             <input type="hidden"  id="categoryId" name="catId"/>
         </form>
-        <paper-fab class="addButton" icon="add" on-click="toggleCreatePopup"></paper-fab>
+        <paper-fab class="addButton" icon="add" on-tap="toggleCreatePopup"></paper-fab>
         <paper-dialog id="addPopup" entry-animation="scale-up-animation"
                       exit-animation="fade-out-animation">
             <h2 id="popupTitle">Ajouter une catégorie</h2>
@@ -50,7 +50,7 @@
                     <input type="hidden"  id="catId" name="catId"/>
                     <div class="buttons">
                         <paper-button dialog-dismiss>Annuler</paper-button>
-                        <paper-button dialog-confirm on-click="submitCreateForm" id="createButton">Créer</paper-button>
+                        <paper-button dialog-confirm on-tap="submitCreateForm" id="createButton">Créer</paper-button>
                     </div>
                 </div>
             </form>
