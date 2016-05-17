@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../bk_components/connection-popup.html">
+
+
+<dom-module id="bk-toolbar">
+    <template>
+        <paper-toolbar>
+            <span class="title">Better Knowledge</span>
+            <template is="dom-if" if="{{notAuthenticated()}}">
+                <connection-popup></connection-popup>
+            </template>
+
+        </paper-toolbar>
+    </template>
+
+    <style>
+
+    </style>
+
+    <script>
+
+        Polymer({
+            is: 'bk-toolbar',
+            properties:{
+                isAuthenticated : {
+                    type :Boolean,
+                    reflectToAttribute :true
+                }
+            },
+            notAuthenticated: function() {
+                alert(this.isAuthenticated);
+                return !this.isAuthenticated;
+            },
+            showAuthen :function(){
+                alert(this.isAuthenticated);
+            },
+            ready: function() {
+                alert(this.isAuthenticated);
+            }
+        });
+    </script>
+
+</dom-module>
+
+

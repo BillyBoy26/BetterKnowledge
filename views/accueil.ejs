@@ -24,7 +24,7 @@
     <link rel="import" href="bower_components/paper-menu/paper-menu.html">
     <link rel="import" href="bower_components/paper-menu/paper-menu.html">
     <link rel="import" href="bk_components/category-list.html">
-    <link rel="import" href="bk_components/connection-popup.html">
+    <link rel="import" href="bk_components/bk-toolbar.html">
 
 
     <link href="/stylesheets/style.css" rel="stylesheet">
@@ -36,10 +36,8 @@
 <body class="fullbleed layout vertical">
         <paper-scroll-header-panel class="flex">
             <section>
-                <paper-toolbar>
-                    <span class="title">Better Knowledge</span>
-                    <connection-popup></connection-popup>
-                </paper-toolbar>
+                <bk-toolbar is-Authenticated='<%- JSON.stringify(isAuthenticated)%>'>
+                </bk-toolbar>
             </section>
             <section>
                 <category-list category-List='<%- JSON.stringify(categoryList) %>' class="flex" grid></category-list>

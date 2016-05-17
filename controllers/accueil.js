@@ -6,7 +6,9 @@ var categoryModel = require('../models/categoryModel');
 router.get('/', function(req, res) {
   categoryModel.findAll(function(categoryList){
     res.render('accueil',{
-      categoryList:categoryList
+      categoryList:categoryList,
+      isAuthenticated: req.isAuthenticated()
+
     });
   });
 });
