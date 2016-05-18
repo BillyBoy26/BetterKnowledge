@@ -7,7 +7,8 @@ router.get('/', function(req, res) {
   categoryModel.findAll(function(categoryList){
     res.render('accueil',{
       categoryList:categoryList,
-      isAuthenticated: req.isAuthenticated()
+      isAuthenticated: req.isAuthenticated(),
+      user :req.user
 
     });
   });

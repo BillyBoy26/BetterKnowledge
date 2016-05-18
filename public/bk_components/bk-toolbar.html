@@ -9,7 +9,16 @@
     <template>
         <paper-toolbar>
             <span class="title">Better Knowledge</span>
+            <span>{{displayName(user)}}</span>
             <connection-popup></connection-popup>
+            <paper-menu-button id="loggedMenu">
+                <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
+                <paper-menu class="dropdown-content">
+                    <paper-item>
+                        <a href="/logout">Logout</a>
+                    </paper-item>
+                </paper-menu>
+            </paper-menu-button>
 
         </paper-toolbar>
     </template>
@@ -26,16 +35,24 @@
                 isAuthenticated : {
                     type :Boolean,
                     reflectToAttribute :true
+                },
+                user : {
+                    type:Object
                 }
             },
-            notAuthenticated: function() {
-                return !this.isAuthenticated;
+            displayName : function(user){
+                alert(user);
+                if(user) {
+                    return user.displayName;
+                }
             },
             ready: function() {
                 if(this.isAuthenticated){
                     this.$$('connection-popup').style.display = 'none';
+                    this.$$('#loggedMenu').style.display = 'block';
                 }else {
                     this.$$('connection-popup').style.display = 'block';
+                    this.$$('#loggedMenu').style.display = 'none';
                 }
 
             }

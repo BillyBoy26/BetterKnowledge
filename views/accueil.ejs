@@ -36,7 +36,7 @@
 <body class="fullbleed layout vertical">
         <paper-scroll-header-panel class="flex">
             <section>
-                <bk-toolbar <% if(isAuthenticated) {  %> is-Authenticated <% } %> >
+                <bk-toolbar user='<%- JSON.stringify(user) %>' <% if(isAuthenticated) {  %> is-Authenticated <% } %> >
                 </bk-toolbar>
             </section>
             <section>
