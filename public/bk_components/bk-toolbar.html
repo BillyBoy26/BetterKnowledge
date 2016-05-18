@@ -9,9 +9,7 @@
     <template>
         <paper-toolbar>
             <span class="title">Better Knowledge</span>
-            <template is="dom-if" if="{{notAuthenticated()}}">
-                <connection-popup></connection-popup>
-            </template>
+            <connection-popup></connection-popup>
 
         </paper-toolbar>
     </template>
@@ -34,7 +32,12 @@
                 return !this.isAuthenticated;
             },
             ready: function() {
-                alert(this.isAuthenticated);
+                if(this.isAuthenticated){
+                    this.$$('connection-popup').style.display = 'none';
+                }else {
+                    this.$$('connection-popup').style.display = 'block';
+                }
+
             }
         });
     </script>
