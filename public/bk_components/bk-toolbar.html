@@ -1,6 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <link rel="import" href="../bk_components/connection-popup.html">
 
@@ -11,12 +14,16 @@
             <span class="title">Better Knowledge</span>
             <span>{{displayName(user)}}</span>
             <connection-popup></connection-popup>
-            <paper-menu-button id="loggedMenu">
-                <paper-icon-button icon="menu" class="dropdown-trigger"></paper-icon-button>
-                <paper-menu class="dropdown-content">
-                    <paper-item>
-                        <a href="/logout">Logout</a>
-                    </paper-item>
+            <!-- TODO jouer avec les offset pour faire un truc beau -->
+            <paper-menu-button id="loggedMenu" horizontal-align="right" vertical-align="top" horizontal-offset="0" vertical-offset="0">
+                <paper-icon-button icon="menu"  class="dropdown-trigger"></paper-icon-button>
+                <paper-menu class="dropdown-content" >
+                    <a href="/logout">
+                        <paper-icon-item>
+                            <iron-icon icon="exit-to-app" item-icon></iron-icon>
+                            Se déconnecter
+                        </paper-icon-item>
+                    </a>
                 </paper-menu>
             </paper-menu-button>
 
@@ -25,6 +32,9 @@
 
     <style>
 
+    </style>
+
+    <style include="iron-flex iron-flex-alignment">
     </style>
 
     <script>
@@ -41,7 +51,6 @@
                 }
             },
             displayName : function(user){
-                alert(user);
                 if(user) {
                     return user.displayName;
                 }

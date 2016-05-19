@@ -9,6 +9,12 @@ body {
   margin: 0;
   font: 14px Roboto,"Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .header{
   width:100%;
 }
