@@ -47,6 +47,8 @@
           href="bower_components/paper-menu/paper-menu.html">
     <link rel="import"
           href="bower_components/paper-item/paper-item.html">
+    <link rel="import"
+          href="bk_components/bk-toolbar.html">
 
 
     <link rel="import" href="bk_components/category-admin-list.html">
@@ -86,10 +88,8 @@
 
     <paper-scroll-header-panel main class="flex">
         <!-- header -->
-        <paper-toolbar>
-            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-            <div>Better Knowledge</div>
-        </paper-toolbar>
+        <bk-toolbar class="paper-header"  user='<%- JSON.stringify(user) %>' <% if(isAuthenticated) {  %> is-Authenticated <% } %>  >
+        </bk-toolbar>
         <!-- content -->
         <div>
             <section class="breathSpace">
