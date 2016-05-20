@@ -45,7 +45,7 @@ var deleteById = function(categoryId) {
 
 var findById = function(categoryId, callback) {
     if(categoryId) {
-        query("SELECT cat_id,cat_name,cat_description,cat_image_path,update_date FROM bk_category.t_category_cat FROM bk_category.t_category_cat WHERE cat_id = $1",
+        query("SELECT cat_id,cat_name,cat_description,cat_image_path,update_date FROM bk_category.t_category_cat WHERE cat_id = $1",
             [categoryId],function(err,rows,fields){
                 if(err){
                     console.error(err);
@@ -65,32 +65,31 @@ var findById = function(categoryId, callback) {
                 }
             });
     }
-    callback();
 };
 
 var findAll = function(callback){
     query("SELECT cat_id,cat_name,cat_description,cat_image_path,update_date FROM bk_category.t_category_cat ORDER BY update_date desc",{},function(err,rows,fields){
-            if(err){
-                console.error(err);
-                throw err;
+        if(err){
+            console.error(err);
+            throw err;
+        }
+        console.log("Find all category done");
+        var categoryList = [];
+        if(rows) {
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                var category = {
+                    id: row.cat_id,
+                    name: row.cat_name,
+                    description: row.cat_description,
+                    imagePath:row.cat_image_path,
+                    updateDate:moment(row.update_date).format('DD/MM/YYYY, HH:MM')
+                };
+                categoryList.push(category);
             }
-            console.log("Find all category done");
-            var categoryList = [];
-            if(rows) {
-                for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i];
-                    var category = {
-                        id: row.cat_id,
-                        name: row.cat_name,
-                        description: row.cat_description,
-                        imagePath:row.cat_image_path,
-                        updateDate:moment(row.update_date).format('DD/MM/YYYY, HH:MM')
-                    };
-                    categoryList.push(category);
-                }
-            }
-            callback(categoryList);
-     });
+        }
+        callback(categoryList);
+    });
 };
 
 module.exports = {
