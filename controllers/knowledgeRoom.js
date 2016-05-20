@@ -7,7 +7,7 @@ var btoa = require('btoa');
 
 /* GET users listing. */
 router.get('/',ensureAuthentificated, function(req, res) {
-    var categoryId = req.body.catId;
+    var categoryId = req.query.catId;
     categoryModel.findById(categoryId, function(category){
         //embedParam pour Gruveo
         //TODO dans le tuto c'est dans le client  mais je pense qu c'est mieux de les mettre ici
@@ -16,7 +16,6 @@ router.get('/',ensureAuthentificated, function(req, res) {
         var secret = 'YOUR_API_KEY';
         var hash = SHA256(generated, secret);
         var signature = btoa(hash);
-
 
         res.render('knowledgeRoom', {
             user: req.user,
