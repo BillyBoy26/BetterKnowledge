@@ -4,6 +4,7 @@ var categoryModel = require('../models/categoryModel');
 var ensureAuthentificated = require('../middleware/authentifcationUser');
 var SHA256 = require("crypto-js/sha256");
 var btoa = require('btoa');
+var strUtils = require('../utils/StringUtils');
 
 /* GET users listing. */
 router.get('/',ensureAuthentificated, function(req, res) {
@@ -16,6 +17,8 @@ router.get('/',ensureAuthentificated, function(req, res) {
         var secret = 'YOUR_API_KEY';
         var hash = SHA256(generated, secret);
         var signature = btoa(hash);
+
+        category.name = strUtils.replaceAll(category.name, ' ', '');;
 
         res.render('knowledgeRoom', {
             user: req.user,
