@@ -19,6 +19,7 @@ router.get('/',ensureAuthentificated, function(req, res) {
 
         res.render('knowledgeRoom', {
             user: req.user,
+            isAuthenticated: req.isAuthenticated(),
             generated: generated,
             signature:signature,
             category:category
