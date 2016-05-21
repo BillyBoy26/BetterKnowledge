@@ -64,7 +64,7 @@
 
 <body class="fullbleed layout vertical">
 
-<paper-drawer-panel>
+<paper-drawer-panel force-narrow>
     <div drawer class="menuPanel">
         <paper-toolbar class="menuToolbar">
             <div class="menu-title">
@@ -89,6 +89,7 @@
     <paper-scroll-header-panel main class="flex">
         <!-- header -->
         <bk-toolbar class="paper-header"  user='<%- JSON.stringify(user) %>' <% if(isAuthenticated) {  %> is-Authenticated <% } %>  >
+            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
         </bk-toolbar>
         <!-- content -->
         <div>
