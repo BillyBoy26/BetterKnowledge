@@ -18,7 +18,9 @@ var upload = multer({ storage: storage })
 router.get('/', function(req, res) {
     categoryModel.findAll(function(categoryList){
         res.render('admin',{
-            categoryList:categoryList
+            categoryList:categoryList,
+            isAuthenticated: req.isAuthenticated(),
+            user :req.user
         });
     });
 

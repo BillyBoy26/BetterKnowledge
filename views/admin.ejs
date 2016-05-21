@@ -47,6 +47,8 @@
           href="bower_components/paper-menu/paper-menu.html">
     <link rel="import"
           href="bower_components/paper-item/paper-item.html">
+    <link rel="import"
+          href="bk_components/bk-toolbar.html">
 
 
     <link rel="import" href="bk_components/category-admin-list.html">
@@ -62,7 +64,7 @@
 
 <body class="fullbleed layout vertical">
 
-<paper-drawer-panel>
+<paper-drawer-panel force-narrow>
     <div drawer class="menuPanel">
         <paper-toolbar class="menuToolbar">
             <div class="menu-title">
@@ -86,10 +88,9 @@
 
     <paper-scroll-header-panel main class="flex">
         <!-- header -->
-        <paper-toolbar>
+        <bk-toolbar class="paper-header"  user='<%- JSON.stringify(user) %>' <% if(isAuthenticated) {  %> is-Authenticated <% } %>  >
             <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-            <div>Better Knowledge</div>
-        </paper-toolbar>
+        </bk-toolbar>
         <!-- content -->
         <div>
             <section class="breathSpace">
