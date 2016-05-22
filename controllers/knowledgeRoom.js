@@ -25,6 +25,7 @@ router.get('/',ensureAuthentificated, function(req, res) {
             isAuthenticated: req.isAuthenticated(),
             generated: generated,
             signature:signature,
+            category:category
         });
 
     });
