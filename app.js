@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -47,23 +46,20 @@ app.use(require("./controllers/index.js"));
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+  app.use(errorHandler);
 }
 
 // production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+// Pour l'instant le meme qu'en débug
+app.use(errorHandler);
 
+function errorHandler(err, req, res, next){
+  res.status(err.status || 500);
+  console.error(err.message);
+  res.render('error', {
+    status: err.status,
+    name : err.name,
+    message : err.message
+  });
+}
 module.exports = app;

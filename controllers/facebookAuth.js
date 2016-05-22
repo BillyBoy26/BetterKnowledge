@@ -8,7 +8,7 @@ router.get('/', connexionFB.authenticate('facebook'));
 router.get('/callback',
     connexionFB.authenticate('facebook', {
         successRedirect : '/',
-        failureRedirect: '/error'
+        failureRedirect: '/'
     }),
     function(req, res) {
         res.redirect('/');
