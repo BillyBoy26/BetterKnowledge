@@ -19,10 +19,11 @@
     <link rel="import" href="bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
     <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
     <link rel="import" href="bower_components/iron-icons/iron-icons.html" >
+    <link rel="import" href="bower_components/iron-icon/iron-icon.html" >
     <link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
     <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
     <link rel="import" href="bower_components/paper-menu/paper-menu.html">
-    <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+    <link rel="import" href="bower_components/paper-material/paper-material.html">
     <link rel="import" href="bk_components/category-list.html">
     <link rel="import" href="bk_components/bk-toolbar.html">
 
@@ -30,7 +31,12 @@
     <link href="/stylesheets/style.css" rel="stylesheet">
 
     <title>BetterKnowledge homepage</title>
-
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
+        .bigIcon {
+            --iron-icon-height: 70px;
+            --iron-icon-width: 70px;
+        }
+    </style>
 </head>
 
 <body class="fullbleed layout vertical">
@@ -42,8 +48,21 @@
             <section>
                 <category-list category-List='<%- JSON.stringify(categoryList) %>' class="flex" grid></category-list>
             </section>
+            <div class="horizontal layout center-justified materialContainer">
+                <paper-material elevation="0" class="layout vertical center">
+                    <iron-icon icon="dashboard" class="bigIcon"></iron-icon>
+                    Choisi une catégorie
+                </paper-material>
+                <paper-material class="layout vertical center" elevation="0">
+                    <iron-icon icon="record-voice-over" class="bigIcon"></iron-icon>
+                    Discute et débat
+                </paper-material>
+                <paper-material  class="layout vertical center" elevation="0">
+                    <iron-icon icon="create" class="bigIcon"></iron-icon>
+                    Garde une trace de tes nouvelles connaissances
+                </paper-material>
+            </div>
         </paper-scroll-header-panel>
-
-</body>
+s</body>
 
 </html>

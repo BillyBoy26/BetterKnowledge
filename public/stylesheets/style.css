@@ -39,3 +39,11 @@ paper-menu {
   height: 200px;
 }
 
+.materialContainer paper-material{
+  width : 33%;
+  height :300px;
+}
+.materialContainer paper-material iron-icon{
+  margin-bottom:15px;
+}
+
