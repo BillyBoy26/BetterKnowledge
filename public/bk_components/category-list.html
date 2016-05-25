@@ -9,33 +9,24 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 
 
 
 <dom-module id="category-list">
     <template>
-        <iron-list id="myIronList" items="{{categoryList}}" as="category" grid$="{{grid}}" selection-enabled >
-            <template>
-                <div>
-                    <div class="categoryContent" tabindex$="[[tabIndex]]">
-                        <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="3">
-                            <div class="card-content">
-                                <div class="info">[[category.updateDate]]</div>
-                            </div>
-                            <div class ="card-actions">
-                                <paper-button id="discuss" on-tap="launchDiscussion" >Discuss about it</paper-button>
-                                <paper-icon-button icon="hardware:keyboard-arrow-up" title="more info" on-tap="toggle" style="float:right;">
-                                </paper-icon-button>
-                                <iron-collapse id="more-info" style="width:100%;">
-                                    [[category.description]]
-                                </iron-collapse>
-                            </div>
-                        </paper-card>
-                    </div>
+        <template is="dom-repeat" id="myIronList" items="{{categoryList}}" as="category">
+            <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class ="white imgManager" elevation="1">
+                <div class="card-content">
+                    <div class="description">[[category.description]]</div>
+                    <div class="info">[[category.updateDate]]</div>
                 </div>
-            </template>
-        </iron-list>
+                <div class ="card-actions">
+                    <paper-button id="discuss" on-tap="launchDiscussion" >Discuss about it</paper-button>
+                </div>
+            </paper-card>
+        </template>
         <form is="iron-form" id="hiddenForm" action="/knowledgeRoom"  method="get" enctype="text/plain">
             <input type="hidden"  id="categoryId" name="catId"/>
         </form>
@@ -43,36 +34,33 @@
 
     <style>
 
-        iron-list {
-            --iron-list-items-container: {
-                 max-width: 600px;
-                 margin-top: 60px;
-                 margin-bottom: 60px;
-            };
+        :host{
+            --paper-card-header-color : white;
+            --iron-image-height: 200px;
         }
-
 
         paper-card{
-            width: 300px;
-        }
-
-        :host{
-            --iron-image-height: 229px;;
-        }
-
-        paper-card.white {
-            --paper-card-header-color:#FFF;
-        }
-
-        .card-content{
-            height:15px;
-            overflow:hidden;
+            width : 255px;
+            height : 321px;
         }
 
         .info {
             font-style: italic;
             font-size: 14px;
             color: #696969;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .card-content{
+            height:34px;
+
+        }
+
+        .description{
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
         }
 
     </style>
@@ -94,13 +82,6 @@
                 hiddenForm.submit();
             },
 
-            toggle: function(element) {
-                var iconButton = Polymer.dom(event).localTarget;
-                var moreInfo = iconButton.nextElementSibling;
-                iconButton.icon = moreInfo.opened ? 'hardware:keyboard-arrow-up'
-                        : 'hardware:keyboard-arrow-down';
-                moreInfo.toggle();
-         }
 
         });
     </script>
