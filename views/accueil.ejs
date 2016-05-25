@@ -48,23 +48,32 @@
             <section>
                 <category-list category-List='<%- JSON.stringify(categoryList) %>' class="flex" grid></category-list>
             </section>
-            <div class="horizontal layout center-justified materialContainer">
+            <section class="horizontal layout center-justified materialContainer">
                 <paper-material elevation="0" class="layout vertical center">
                     <iron-icon icon="dashboard" class="bigIcon"></iron-icon>
                     <h3>Choose a category</h3>
-                    Categories are inspired by Wikipedia but you can create yours.So make your choice !
+                    <div class="description">
+                        Categories are inspired by Wikipedia but you can create yours.So make your choice !
+                    </div>
                 </paper-material>
                 <paper-material class="layout vertical center" elevation="0">
                     <iron-icon icon="record-voice-over" class="bigIcon"></iron-icon>
                     <h3>Discute and debate</h3>
-                    BetterKnowledge will found other paticipants with which you can speak in a video chat. Discuss, debate, make your point !
+                    <div class="description">
+                        BetterKnowledge will found other paticipants with which you can speak in a video chat. Discuss,
+                        debate, make your point !
+                    </div>
                 </paper-material>
                 <paper-material  class="layout vertical center" elevation="0">
                     <iron-icon icon="create" class="bigIcon"></iron-icon>
                     <h3>Keep a trace</h3>
-                    Once the debate is over, you can keep trace of your fresh knowledge in a block note. These will be usefull in your next debate !
+                    <div class="description">
+                    Once the debate is over, you can keep trace of your fresh knowledge in a block note.
+                        These will be usefull in your next debate !
+
+                    </div>
                 </paper-material>
-            </div>
+            </section>
         </paper-scroll-header-panel>
 </body>
 

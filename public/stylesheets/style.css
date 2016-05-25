@@ -47,3 +47,9 @@ paper-menu {
   margin-bottom:15px;
 }
 
+.materialContainer paper-material .description {
+  width: 250px;
+  text-align: center;
+
+}
+
