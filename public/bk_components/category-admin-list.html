@@ -15,23 +15,26 @@
       href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="category-admin-list">
     <template>
         <!--<div class="layout vertical center-justified">-->
             <!--<div class="layout horizontal  wrap">-->
-                <template is="dom-repeat" items="{{categoryList}}" as="category" >
-                    <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class="">
-                        <div class="card-content">
-                            <div class="description">[[category.description]]</div>
-                            <div class="info">[[category.updateDate]]</div>
-                        </div>
-                        <div class="card-actions">
-                            <paper-icon-button  icon="create" on-tap="toggleUpdatePopup"></paper-icon-button>
-                            <paper-icon-button  icon="delete" on-tap="submitDeleteForm"></paper-icon-button>
-                        </div>
-                    </paper-card>
-                </template>
+        <iron-ajax auto url="/admin/category/findall" handle-as="json" last-response="{{categoryList}}" method="GET"
+                    on-error="ajaxError" ></iron-ajax>
+        <template is="dom-repeat" items="{{categoryList}}" as="category" >
+            <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class="">
+                <div class="card-content">
+                    <div class="description">[[category.description]]</div>
+                    <div class="info">[[category.updateDate]]</div>
+                </div>
+                <div class="card-actions">
+                    <paper-icon-button  icon="create" on-tap="toggleUpdatePopup"></paper-icon-button>
+                    <paper-icon-button  icon="delete" on-tap="submitDeleteForm"></paper-icon-button>
+                </div>
+            </paper-card>
+        </template>
 
             <!--</div>-->
         <!--</div>-->
@@ -135,7 +138,10 @@
                 document.getElementById("popupTitle").innerHTML  = 'Ajouter une catégorie';
                 document.getElementById("createButton").innerHTML  = 'Créer';
                 document.getElementById('addPopup').toggle();
-            }
+            },
+            ajaxError:function(err) {
+                console.log(err);
+            },
         });
     </script>
 

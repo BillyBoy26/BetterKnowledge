@@ -81,25 +81,19 @@
                 <span>Utilisateurs</span>
             </paper-item>
         </paper-menu>
-
-
-
     </div>
-
     <paper-scroll-header-panel main class="flex">
         <!-- header -->
-        <bk-toolbar class="paper-header"  user='<%- JSON.stringify(user) %>' <% if(isAuthenticated) {  %> is-Authenticated <% } %>  >
+        <bk-toolbar class="paper-header">
             <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
         </bk-toolbar>
         <!-- content -->
         <div>
             <section class="breathSpace">
-                <category-admin-list category-List='<%- JSON.stringify(categoryList) %>' post-path='/admin/category' class="flex" ></category-admin-list>
+                <category-admin-list  post-path='/admin/category' class="flex" ></category-admin-list>
             </section>
         </div>
-
     </paper-scroll-header-panel>
-
 </paper-drawer-panel>
 
 </body>

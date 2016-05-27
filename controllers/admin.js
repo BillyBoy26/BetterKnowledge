@@ -16,14 +16,14 @@ var upload = multer({ storage: storage })
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-    categoryModel.findAll(function(categoryList){
-        res.render('admin',{
-            categoryList:categoryList,
-            isAuthenticated: req.isAuthenticated(),
-            user :req.user
-        });
-    });
+    res.render('admin');
+});
 
+router.get('/category/findall', function(req, res) {
+    categoryModel.findAll(function(categoryList){
+        res.contentType("json");
+        res.send(categoryList);
+    });
 });
 
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
