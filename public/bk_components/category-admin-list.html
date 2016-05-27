@@ -23,7 +23,7 @@
                 <template is="dom-repeat" items="{{categoryList}}" as="category" >
                     <paper-card heading="[[category.name]]" image="[[category.imagePath]]" class="">
                         <div class="card-content">
-                            <div>[[category.description]]</div>
+                            <div class="description">[[category.description]]</div>
                             <div class="info">[[category.updateDate]]</div>
                         </div>
                         <div class="card-actions">
@@ -61,10 +61,9 @@
     <style>
 
         :host{
-            --paper-card-header-color : white;
-            --paper-card-header-image : {
-                    height:200px;
-             }
+              --paper-card-header-color : white;
+               --iron-image-height: 200px;
+
         }
         paper-card{
             width : 255px;
@@ -81,7 +80,13 @@
 
         .card-content{
             height:34px;
+
+        }
+
+        .description{
+            text-overflow:ellipsis;
             overflow:hidden;
+            white-space:nowrap;
         }
 
 
