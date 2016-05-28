@@ -29,14 +29,12 @@ router.get('/category/findall', function(req, res) {
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
     var category = buildCategory(req);
     categoryModel.add(category);
-    res.redirect('/admin');
 });
 
 router.post('/category/update',upload.single('categoryImage'),function(req,res){
 
     var category = buildCategory(req);
     categoryModel.update(category);
-    res.redirect('/admin');
 });
 
 
@@ -44,7 +42,6 @@ router.post('/category/update',upload.single('categoryImage'),function(req,res){
 router.post('/category/delete',function(req,res){
     var categoryId = req.body.catId;
     categoryModel.deleteById(categoryId);
-    res.redirect('/admin');
 });
 
 function buildCategory(req) {

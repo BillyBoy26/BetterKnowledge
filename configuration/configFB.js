@@ -4,4 +4,4 @@ module.exports={
   "callback_url"          :     "https://localhost:3000/auth/facebook/callback"
 }
 
-//https://ec2-54-201-55-49.us-west-2.compute.amazonaws.com:3000/auth/facebook/callback
+//https://ec2-54-201-55-49.us-west-2.compute.amazonaws.com:3000/authentification/facebook/callback
