@@ -5,6 +5,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <link rel="import" href="../bk_components/connection-popup.html">
@@ -12,11 +13,13 @@
 
 <dom-module id="bk-toolbar">
     <template>
+        <iron-ajax auto url="/auth/getConnectData" handle-as="json" last-response="{{data}}" method="GET"
+                   on-error="ajaxError" on-response="updateStyle" id="ajax"></iron-ajax>
         <paper-toolbar>
             <!-- content sert pour l'icon de menu dans admin.ejs, peut être à changer plus tard-->
             <content></content>
             <span class="title">Better Knowledge</span>
-            <span>{{displayName(user)}}</span>
+            <span>{{displayName(data.user)}}</span>
             <connection-popup></connection-popup>
             <!-- TODO jouer avec les offset pour faire un truc beau -->
             <paper-menu-button id="loggedMenu" horizontal-align="right" vertical-align="top" horizontal-offset="0" vertical-offset="0">
@@ -73,7 +76,12 @@
                     return user.displayName;
                 }
             },
-            ready: function() {
+            errorAjax : function(err) {
+                console.log(err);
+            },
+            updateStyle : function() {
+                //TODO Il doit y avoir moyen de bind directemnt le résultat de l'iron-ajax dans les properties du component et de gérer les displays avec du css
+                this.isAuthenticated = this.$.ajax.lastResponse.isAuthenticated;
                 if(this.isAuthenticated){
                     this.$$('connection-popup').style.display = 'none';
                     this.$$('#loggedMenu').style.display = 'block';
@@ -82,7 +90,8 @@
                     this.$$('#loggedMenu').style.display = 'none';
                 }
 
-            }
+            },
+
         });
     </script>
 
