@@ -18,6 +18,9 @@
         <paper-toolbar>
             <!-- content sert pour l'icon de menu dans admin.ejs, peut être à changer plus tard-->
             <content></content>
+            <a href ="/" tabindex="-1">
+                <paper-icon-button icon="home"></paper-icon-button>
+            </a>
             <span class="title">Better Knowledge</span>
             <span>{{displayName(data.user)}}</span>
             <connection-popup></connection-popup>
