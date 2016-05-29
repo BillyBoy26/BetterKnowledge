@@ -4,17 +4,14 @@ var categoryModel = require('../models/categoryModel');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
+  res.render('accueil');
+});
+
+router.get('/category/findall', function(req, res) {
   categoryModel.findAll(function(categoryList){
-    res.render('accueil',{
-      categoryList:categoryList
-    });
+    res.contentType("json");
+    res.send(categoryList);
   });
 });
-
-router.post('/launchDiscussion',function(req,res){
-  var categoryId = req.body.catId;
-  res.redirect('/knowledgeRoom', categoryId);
-});
-
 
 module.exports = router;
