@@ -1,0 +1,72 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../bk_components/connection-popup.html">
+
+
+<dom-module id="signup-form">
+    <template>
+        <form is="iron-form" id="showForm">
+            <paper-input name="name" label="Name" required></paper-input>
+            <paper-input name="firstName" label="Firstname" required></paper-input>
+            <gold-email-input name="email" auto-validate label="Email address" required>
+            </gold-email-input>
+            <paper-input name="password" label="Password" type="password" required>
+                <iron-icon icon="lock" prefix></iron-icon>
+            </paper-input>
+            <paper-button raised onclick="_submit(event)">Submit</paper-button>
+            <paper-button raised onclick="_reset(event)">Reset</paper-button>
+            <div class="output"></div>
+        </form>
+        <!--//On crée un deuxieme formulaire classique pour faire la redirection
+        //Sinon on ne peut pas la faire parce que c'est un appel ajax qui est fait avec l'iron form-->
+        <form method="post" action="/signup/createUser" id="nativeForm">
+        </form>
+    </template>
+
+    <style>
+        form{
+            margin:1%;
+        }
+    </style>
+
+
+    <script>
+
+        Polymer({
+            is: 'signup-form',
+            properties:{
+            }
+        });
+
+        function _submit(event) {
+            if (showForm.validate()) {
+                // For each element the iron-form wants to submit, create a hidden
+                // input in the submission form.
+                var serializedItems = showForm.serialize();
+                for (var name in serializedItems) {
+                    var input = document.createElement('input');
+                    input.hidden = true;
+                    input.name = name;
+                    input.value = serializedItems[name];
+                    nativeForm.appendChild(input);
+                }
+                nativeForm.submit();
+            }
+        }
+        function _reset(event) {
+            var form = Polymer.dom(event).localTarget.parentElement
+            form.reset();
+            form.querySelector('.output').innerHTML = '';
+        }
+
+    </script>
+
+</dom-module>
+
+

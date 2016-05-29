@@ -1,6 +1,7 @@
 //Define MySQL parameter in Config.js file.
 var configFB          =     require('../configuration/configFB');
 var query             = require('./connexionPostgres');
+var userModel             = require('./userModel');
 var passport          =     require('passport');
 var FacebookStrategy  =     require('passport-facebook').Strategy;
 
@@ -22,19 +23,18 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function () {
             //Check whether the User exists or not using profile.id
-            query("SELECT * from bk_user.t_user_usr where usr_id="+profile.id,function(err,rows,fields){
-                if(err) {
-                    console.error(err);
-                    throw err;
-                }
-                if(rows.rowCount===0)
-                {
+            userModel.findUserById(profile.id, function (user) {
+                if (user == undefined) {
                     console.log("There is no such user, adding now");
-                    postgres.query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname) " +
-                    "VALUES('"+profile.id+"','"+profile.name.familyName+"','"+profile.name.givenName+"')");
+                    var userToCreate = {
+                        id: profile.id,
+                        name: profile.name.familyName,
+                        fistname: profile.name.givenName,
+                        email: profile.emails[0].value
+                    };
+                    userModel.createUserFromFB(userToCreate);
                 }
-                else
-                {
+                else {
                     console.log("User already exists in database");
                 }
             });
@@ -42,5 +42,4 @@ passport.use(new FacebookStrategy({
         });
     }
 ));
-
 module.exports= passport;
