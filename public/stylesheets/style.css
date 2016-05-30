@@ -24,11 +24,6 @@ paper-scroll-header-panel {
   width: 100%;
 }
 
-/*paper-button {*/
-  /*display: block;*/
-  /*background: #4285f4;*/
-  /*color: #fff;*/
-/*}*/
 paper-menu {
   display: block;
 }
@@ -39,9 +34,13 @@ paper-menu {
   height: 200px;
 }
 
+.materialContainer{
+  margin-top: 20vh;
+}
+
 .materialContainer paper-material{
-  width : 33%;
   height :300px;
+  width: 445px;
 }
 .materialContainer paper-material iron-icon{
   margin-bottom:15px;
@@ -50,6 +49,9 @@ paper-menu {
 .materialContainer paper-material .description {
   width: 250px;
   text-align: center;
+}
 
+.alignCenter {
+  text-align: center;
 }
 

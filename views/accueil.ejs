@@ -37,6 +37,8 @@
             --iron-icon-width: 70px;
         }
     </style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
+    </style>
 </head>
 
 <body class="fullbleed layout vertical">
@@ -45,10 +47,10 @@
                 <bk-toolbar>
                 </bk-toolbar>
             </section>
-            <section>
+            <section class="alignCenter">
                 <category-list class="flex"></category-list>
             </section>
-            <section class="horizontal layout center-justified materialContainer">
+            <section class="horizontal layout center-justified wrap materialContainer">
                 <paper-material elevation="0" class="layout vertical center">
                     <iron-icon icon="dashboard" class="bigIcon"></iron-icon>
                     <h3>Choose a category</h3>
