@@ -10,7 +10,7 @@
 }
 
 .infosContainer{
-  margin:0 auto;
+  margin:15px auto;
   width:95%;
 }
 
@@ -40,6 +40,16 @@
   padding: 5vh 0;
 }
 
+h5{
+  text-transform: uppercase;
+  color: #988efb;
+  font-family: Montserrat;
+  letter-spacing: 1px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
 .specialTitle{
   color: #988efb;
   font-family: Montserrat;
@@ -51,7 +61,6 @@
   padding-bottom: 15px;
   display: block;
   border-bottom: 1px solid lightgray;
-  background-color: white;
   text-align: center;
 
 }
