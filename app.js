@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport          =     require('passport');
 
 var app = express();
 
@@ -27,11 +28,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 //TODO a bouger quand il y aura d'autres types de connection
 //On ne peut pas mettre ce bout de code dans le controller authFacebook, sinon la connection se fait juste sur l'url du controler
 // et la méthode ensureAuthentifié return false.
-var connexionFB = require('./models/connexionFB.js');
 var session = require('express-session');
 app.use(session({ secret: 'keyboard cat', key: 'sid', resave: true, saveUninitialized: true }));
-app.use(connexionFB.initialize());
-app.use(connexionFB.session());
+// Passport session setup.
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
 
 
 app.use('/polymer', express.static(__dirname + '/node_modules/@polymer/polymer'));

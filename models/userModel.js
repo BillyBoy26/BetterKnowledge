@@ -9,15 +9,19 @@ var findUser = function(loginInfos, callback) {
                     throw err;
                 }
                 console.log("Search user done");
-                if(rows){
+                if(rows.length > 0){
                     var row = rows[0];
                     var user = {
                         id: row.usr_id,
                         name: row.usr_name,
                         firstname: row.usr_firstname,
+                        displayName : row.usr_firstname + " " + row.usr_name,
                         email:row.usr_mail
                     };
                     callback(user);
+                }
+                else{
+                    callback(null);
                 }
             });
     }

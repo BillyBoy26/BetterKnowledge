@@ -1,17 +1,7 @@
-//Define MySQL parameter in Config.js file.
 var configFB          =     require('../configuration/configFB');
-var query             = require('./connexionPostgres');
 var userModel             = require('./userModel');
 var passport          =     require('passport');
 var FacebookStrategy  =     require('passport-facebook').Strategy;
-
-// Passport session setup.
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
-});
 
 
 // Use the FacebookStrategy within Passport.

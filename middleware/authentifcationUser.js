@@ -4,8 +4,8 @@ module.exports = function ensureAuthenticated(req, res, next) {
     }
     var err = {
             status : 401,
-            name : "Utilisateur non authentifié",
-            message : "Veuillez vous connecter via la page d'accueil"
+            name : "User not authenticated",
+            message : "Please login"
         };
     return next(err);
 }
