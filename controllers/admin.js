@@ -5,14 +5,14 @@ var multer = require('multer');
 var strUtils = require('../utils/StringUtils');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/images/category')
+        cb(null, 'public/images/category');
     },
     filename: function (req, file, cb) {
-        cb(null, 'cat_'+ Date.now()  + '_' + file.originalname)
+        cb(null, 'cat_'+ Date.now()  + '_' + file.originalname);
     }
 });
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -27,6 +27,7 @@ router.get('/category/findall', function(req, res) {
 });
 
 router.post('/category/add',upload.single('categoryImage'),function(req,res){
+	console.log("AJOUT D'UNE CATEGIRY");
     var category = buildCategory(req);
     categoryModel.add(category);
 });
@@ -45,6 +46,7 @@ router.post('/category/delete',function(req,res){
 });
 
 function buildCategory(req) {
+	  console.log("CONSTRUCTION DUNE CATEGORY");
     var fileName = null;
     if (req.file && req.file.path) {
         //TODO il dot y avoir moyen de faire mieux que ca
@@ -57,7 +59,7 @@ function buildCategory(req) {
         description: req.body.categoryDescription,
         imagePath: fileName,
         id : req.body.catId
-    }
+    };
     return category;
 }
 

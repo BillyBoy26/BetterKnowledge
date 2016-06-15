@@ -16,6 +16,7 @@
 <link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 <dom-module id="category-admin-list">
     <template>
@@ -44,7 +45,7 @@
         <paper-fab class="addButton" icon="add" on-tap="toggleCreatePopup"></paper-fab>
         <paper-dialog id="addPopup" entry-animation="scale-up-animation"
                       exit-animation="fade-out-animation">
-            <h2 id="popupTitle">Ajouter une catégorie</h2>
+            <h2 id="popupTitle">Add a category</h2>
             <form  id="categoryForm" method="post" action="/admin/category/add" enctype='multipart/form-data'>
                 <div class="layout vertical start-justified">
                     <paper-input id="categoryName" name="categoryName" label="name" class="flex"></paper-input>
@@ -52,8 +53,8 @@
                     <paper-input id="categoryDescription" name="categoryDescription" label="description"></paper-input>
                     <input type="hidden"  id="catId" name="catId"/>
                     <div class="buttons">
-                        <paper-button dialog-dismiss>Annuler</paper-button>
-                        <paper-button dialog-confirm on-tap="submitCreateForm" id="createButton">Créer</paper-button>
+                        <paper-button dialog-dismiss>Cancel</paper-button>
+                        <paper-button dialog-confirm on-tap="submitCreateForm" id="createButton">Create</paper-button>
                     </div>
                 </div>
             </form>
@@ -126,8 +127,8 @@
                 document.getElementById("categoryForm").action = this.postPath + '/update';
                 var idToDelete = element.model.category.id;
                 document.getElementById('catId').setAttribute("value", idToDelete);
-                document.getElementById("popupTitle").innerHTML  = 'Mettre à jour la catégorie';
-                document.getElementById("createButton").innerHTML  = 'Mettre à jour';
+                document.getElementById("popupTitle").innerHTML  = 'Update a category';
+                document.getElementById("createButton").innerHTML  = 'Update';
 
                 document.getElementById('addPopup').toggle();
             },
@@ -135,8 +136,8 @@
                 document.getElementById("categoryName").value = '';
                 document.getElementById("categoryDescription").value = '';
                 document.getElementById("categoryForm").action = this.postPath + '/add';
-                document.getElementById("popupTitle").innerHTML  = 'Ajouter une catégorie';
-                document.getElementById("createButton").innerHTML  = 'Créer';
+                document.getElementById("popupTitle").innerHTML  = 'Create a category';
+                document.getElementById("createButton").innerHTML  = 'Create';
                 document.getElementById('addPopup').toggle();
             },
             ajaxError:function(err) {

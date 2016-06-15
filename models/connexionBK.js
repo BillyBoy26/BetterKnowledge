@@ -10,7 +10,7 @@ passport.use(new LocalStrategy({
         var loginInfos = {email : email, password : password};
         userModel.findUser(loginInfos, function (user){
             if (!user) {
-                return done(null, false, { message: 'Incorrect informations' });
+                return done(null, false, { message: 'Email address or password are incorrect' });
             }
             return done(null, user);
         });

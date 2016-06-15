@@ -10,10 +10,14 @@
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html" >
+<link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html" >
 
 
 <dom-module id="connection-popup">
     <template>
+    
+         <iron-ajax auto url="/accueil/getLoginMessage" handle-as="json" last-response="{{message}}" method="POST"
+                   on-error="ajaxError" on-response="updatePopupMessage" id="ajax"></iron-ajax>
         <div class="horizontal layout">
             <paper-button  on-click='toggle'>Sign in</paper-button>
             <a href="/signup" tabindex="-1">
@@ -25,6 +29,8 @@
                 <div class="vertical layout wrap center container">
                     <iron-image src="../images/icon/iconLogin.jpg" style="margin:5px"></iron-image>
                     <h2>Connection</h2>
+                    <div class="notification">{{loginMessage}}</div>
+                    <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="_connect"></iron-a11y-keys>
                     <form is="iron-form" id="connectionForm" action="/auth/connection">
                         <paper-input name="email" label="Adresse Email" class="paper-input">
                             <iron-icon icon="mail" prefix></iron-icon>
@@ -32,7 +38,7 @@
                         <paper-input name="password" label="Mot de passe" type="password" class="paper-input">
                             <iron-icon icon="lock" prefix></iron-icon>
                         </paper-input>
-                        <paper-button id="subscribeButton" raised onclick="_connect(event)">Connection</paper-button>
+                        <paper-button id="connectionButton" raised onclick="_connect">Connection</paper-button>
                     </form>
                     <div class="orLabel">Or</div>
                     <div class="horizontal layout wrap">
@@ -70,7 +76,7 @@
             width:100%;
         }
 
-        #subscribeButton{
+        #connectionButton{
             background: #fb3334;
         }
         .container{
@@ -84,6 +90,10 @@
             -webkit-border-radius: 25px;
             border-radius: 25px;
         }
+        
+        .notification{
+			color: #bf0d0d;
+        }
     </style>
 
     <style include="iron-flex iron-flex-alignment">
@@ -93,14 +103,34 @@
 
         Polymer({
             is: 'connection-popup',
+            
+            properties:{
+                isAuthenticated : {
+                    type :Boolean,
+                    reflectToAttribute :true
+                },
+                loginMessage : {
+                    type:Object
+                }
+            },
+            
             toggle : function(){
+                this.loginMessage = "";
                 document.getElementById("mainPopup").toggle();
-            }
+            },
+            
+             _connect : function() {
+	            this.$.connectionForm.submit();
+            },
+            
+            updatePopupMessage : function() {
+                this.loginMessage = this.$.ajax.lastResponse.loginMessage;
+                if(this.loginMessage && this.loginMessage != ""){
+                    this.$.mainPopup.toggle();
+                }
+            },
         });
 
-        function _connect(event) {
-            Polymer.dom(event).localTarget.parentElement.submit();
-        }
     </script>
 </dom-module>
 

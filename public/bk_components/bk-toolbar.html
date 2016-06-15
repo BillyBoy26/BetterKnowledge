@@ -16,7 +16,7 @@
         <iron-ajax auto url="/auth/getConnectData" handle-as="json" last-response="{{data}}" method="GET"
                    on-error="ajaxError" on-response="updateStyle" id="ajax"></iron-ajax>
         <paper-toolbar>
-            <!-- content sert pour l'icon de menu dans admin.ejs, peut être à changer plus tard-->
+            <!-- content sert pour l'icon de menu dans admin.ejs, peut mettre à changer plus tard-->
             <content></content>
             <a href ="/" tabindex="-1">
                 <paper-icon-button icon="home"></paper-icon-button>
@@ -31,7 +31,7 @@
                     <a href="/">
                         <paper-icon-item>
                             <iron-icon icon="home" item-icon></iron-icon>
-                            Accueil
+                            Home
                         </paper-icon-item>
                     </a>
                     <a href="/admin">
@@ -43,7 +43,7 @@
                     <a href="/logout">
                         <paper-icon-item>
                             <iron-icon icon="exit-to-app" item-icon></iron-icon>
-                            Se déconnecter
+                            Logout
                         </paper-icon-item>
                     </a>
                 </paper-menu>
@@ -83,7 +83,7 @@
                 console.log(err);
             },
             updateStyle : function() {
-                //TODO Il doit y avoir moyen de bind directemnt le résultat de l'iron-ajax dans les properties du component et de gérer les displays avec du css
+                //TODO Il doit y avoir moyen de bind directemnt le r��sultat de l'iron-ajax dans les properties du component et de g��rer les displays avec du css
                 this.isAuthenticated = this.$.ajax.lastResponse.isAuthenticated;
                 if(this.isAuthenticated){
                     this.$$('connection-popup').style.display = 'none';
@@ -92,7 +92,6 @@
                     this.$$('connection-popup').style.display = 'block';
                     this.$$('#loggedMenu').style.display = 'none';
                 }
-
             },
 
         });

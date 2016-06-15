@@ -5,7 +5,8 @@ var connexionBK = require('../../models/connexionBK.js');
 
 //Passport Router
 router.get('/', connexionBK.authenticate('local', { successRedirect: '/',
-        failureRedirect: '/'
+        failureRedirect: '/',
+        failureFlash: true
     })
 );
 
