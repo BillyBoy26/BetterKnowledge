@@ -22,7 +22,7 @@ passport.use(new FacebookStrategy({
                         fistname: profile.name.givenName,
                         email: profile.emails[0].value
                     };
-                    userModel.createUserFromFB(userToCreate);
+                    userModel.createUserFromOauth(userToCreate);
                 }
                 else {
                     console.log("User already exists in database");

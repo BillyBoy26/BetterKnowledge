@@ -9,10 +9,7 @@ router.get('/callback',
     connexionFB.authenticate('facebook', {
         successRedirect : '/',
         failureRedirect: '/'
-    }),
-    function(req, res) {
-        res.redirect('/');
-    });
+    }));
 
 
 

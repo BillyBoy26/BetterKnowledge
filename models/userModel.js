@@ -50,7 +50,7 @@ var findUserById = function(userId, callback) {
     }
 };
 
-var createUserFromFB = function(user){
+var createUserFromOauth = function(user){
     if(user){
         query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname, usr_mail) " +
             "VALUES('$1','$2','$3','$4')",[user.id,user.name,user.firstname,user.email], function(err,rows,fields){
