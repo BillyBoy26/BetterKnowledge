@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 router.post("/getLoginMessage", function(req, res){
     res.contentType("json");
     res.send({loginMessage : loginMessage});
+    loginMessage = "";
 });
 
 router.get('/category/findall', function(req, res) {
