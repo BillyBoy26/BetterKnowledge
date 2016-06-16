@@ -36,7 +36,7 @@ var findUserById = function(userId, callback) {
                     throw err;
                 }
                 console.log("Search user by id done");
-                if(rows){
+                if(rows && rows.lenght>0){
                     var row = rows[0];
                     var user = {
                         id: row.usr_id,
@@ -46,14 +46,18 @@ var findUserById = function(userId, callback) {
                     };
                     callback(user);
                 }
+                else
+                {
+                    callback(null);
+                }
             });
     }
 };
 
 var createUserFromOauth = function(user){
     if(user){
-        query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname, usr_mail) " +
-            "VALUES('$1','$2','$3','$4')",[user.id,user.name,user.firstname,user.email], function(err,rows,fields){
+        query("INSERT into bk_user.t_user_usr(usr_id,usr_name, usr_firstname, usr_mail, usr_profil_picture, usr_provider) " +
+            "VALUES($1,$2,$3,$4,$5,$6)",[user.id,user.name,user.firstname,user.email,user.profilPicture,user.provider], function(err,rows,fields){
             if(err){
                 console.error(err);
                 throw err;
@@ -65,8 +69,8 @@ var createUserFromOauth = function(user){
 
 var createUser = function(user){
     if(user){
-        query("INSERT into bk_user.t_user_usr(usr_name, usr_firstname, usr_mail, usr_password) " +
-            "VALUES($1,$2,$3,$4)",[user.name,user.firstname,user.email,user.password], function(err,rows,fields){
+        query("INSERT into bk_user.t_user_usr(usr_name, usr_firstname, usr_mail, usr_password,usr_provider) " +
+            "VALUES($1,$2,$3,$4,$5)",[user.name,user.firstname,user.email,user.password,'BetterKnowledge'], function(err,rows,fields){
             if(err){
                 console.error(err);
                 throw err;
@@ -79,6 +83,6 @@ var createUser = function(user){
 module.exports = {
     findUser : findUser,
     findUserById : findUserById,
-    createUserFromFB : createUserFromFB,
+    createUserFromOauth : createUserFromOauth,
     createUser : createUser
 };

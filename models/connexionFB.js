@@ -19,8 +19,10 @@ passport.use(new FacebookStrategy({
                     var userToCreate = {
                         id: profile.id,
                         name: profile.name.familyName,
-                        fistname: profile.name.givenName,
-                        email: profile.emails[0].value
+                        firstname: profile.name.givenName,
+                        email: profile.emails[0].value,
+                        profilPicture:'',
+                        provider: profile.provider
                     };
                     userModel.createUserFromOauth(userToCreate);
                 }

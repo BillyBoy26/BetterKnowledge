@@ -1,14 +1,14 @@
-var configTwitter          =     require('../configuration/configTwitter');
+var configGoogle          =     require('../configuration/configGoogle');
 var userModel             = require('./userModel');
 var passport          =     require('passport');
-var TwitterStrategy  =     require('passport-twitter').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
 // Use the TwitterStrategy within Passport.
-passport.use(new TwitterStrategy({
-		consumerKey: configTwitter.twitter_api_key,
-		consumerSecret:configTwitter.twitter_api_secret ,
-        callbackURL: configTwitter.callback_url
+passport.use(new GoogleStrategy({
+		clientID: configGoogle.google_api_key,
+		clientSecret:configGoogle.google_api_secret ,
+        callbackURL: configGoogle.callback_url
     },
     function(accessToken, refreshToken, profile, done) {
         userModel.findUserById(profile.id, function (user) {
@@ -16,9 +16,9 @@ passport.use(new TwitterStrategy({
                 console.log("There is no such user, adding now");
                 var userToCreate = {
                     id: profile.id,
-                    name: '',
-                    firstname: profile.displayName,
-                    email: '',
+                    name: profile.name.familyName,
+                    firstname: profile.name.givenName,
+                    email : '',
                     profilPicture : profile.photos[0].value,
                     provider: profile.provider
                 };
