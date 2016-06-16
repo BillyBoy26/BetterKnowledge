@@ -36,7 +36,7 @@ var findUserById = function(userId, callback) {
                     throw err;
                 }
                 console.log("Search user by id done");
-                if(rows && rows.lenght>0){
+                if(rows && rows[0]){
                     var row = rows[0];
                     var user = {
                         id: row.usr_id,
