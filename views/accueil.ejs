@@ -25,8 +25,10 @@
     <link rel="import" href="bower_components/paper-menu/paper-menu.html">
     <link rel="import" href="bower_components/paper-material/paper-material.html">
     <link rel="import" href="bower_components/iron-image/iron-image.html">
+    <link rel="import" href="bower_components/iron-media-query/iron-media-query.html">
     <link rel="import" href="bk_components/category-list.html">
     <link rel="import" href="bk_components/bk-toolbar.html">
+    <link rel="import" href="bk_components/accueil-section.html">
 
 
     <link href="/stylesheets/style.css" rel="stylesheet">
@@ -38,17 +40,13 @@
             --iron-icon-height: 70px;
             --iron-icon-width: 70px;
         }
-
-        .image{
-            --iron-image-width: 100%;
-            --iron-image-height: 100%;
-        }
     </style>
     <style is="custom-style" include="iron-flex iron-flex-alignment">
     </style>
 </head>
 
 <body class="fullbleed layout vertical">
+
         <paper-scroll-header-panel class="flex">
             <section>
                 <bk-toolbar error>
@@ -57,28 +55,7 @@
             <section class="alignCenter listContainer">
                 <category-list class="flex"></category-list>
             </section>
-            <section class="infosContainer oddBg">
-                <h2 class="specialTitle">What is BetterKnowledge ?</h2>
-                <div class="layout horizontal">
-                    <div  style="width:50%;padding-right:30px;">
-                        <h3 style="font-size:30px">
-                            Spread the knowledge.
-                        </h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra libero arcu, non pellentesque magna posuere sed.
-                            Pellentesque ligula nunc, sodales at metus vel, congue vehicula ante. Sed efficitur leo ipsum. Morbi lacinia a est non sodales.
-                            Donec eget aliquam sem.
-                        </p>
-                        <h5>
-                            Who is BetterKnowledge for ?
-                        </h5>
-                        <p style="color: #a3a3a3;">
-                            Everyone who want to improve and share his knowledge with respect of each other.
-                        </p>
-                    </div>
-                    <iron-image style="" src="images/shareKnowledge.jpg" class="image"></iron-image>
-                </div>
-            </section>
+            <accueil-section></accueil-section>
             <section class="infosContainer horizontal layout center-justified wrap materialContainer">
                 <paper-material elevation="0" class="layout vertical center">
                     <iron-icon icon="dashboard" class="bigIcon"></iron-icon>

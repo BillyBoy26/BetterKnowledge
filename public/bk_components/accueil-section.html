@@ -1,0 +1,83 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="accueil-section">
+    <template>
+        <iron-media-query query="(max-width: 700px)" query-matches="{{isAtLeast700px}}"
+                on-query-matches-changed="updateResponsiveStyle" ></iron-media-query>
+            <section class="infosContainer oddBg">
+                <h2 class="specialTitle">What is BetterKnowledge ?</h2>
+                <div class="descAndImageContainer">
+                    <div class="descContainer">
+                        <h3 style="font-size:30px">
+                            Spread the knowledge.
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra libero arcu, non pellentesque magna posuere sed.
+                            Pellentesque ligula nunc, sodales at metus vel, congue vehicula ante. Sed efficitur leo ipsum. Morbi lacinia a est non sodales.
+                            Donec eget aliquam sem.
+                        </p>
+                        <h5>
+                            Who is BetterKnowledge for ?
+                        </h5>
+                        <p style="color: #a3a3a3;">
+                            Everyone who want to improve and share his knowledge with respect of each other.
+                        </p>
+                    </div>
+                    <iron-image style="" src="../images/shareKnowledge.jpg" class="descImage"></iron-image>
+                </div>
+            </section>
+    </template>
+
+    <style>
+        :host {
+            --width-desc-container: 50%;
+
+        }
+
+        .descImage{
+            --iron-image-width: 100%;
+            --iron-image-height: 100%;
+        }
+
+        .descAndImageContainer{
+            @apply(--layout-horizontal);
+        }
+        .descContainer {
+            width: 50%;
+            padding-right:30px;
+        }
+        .descContainer not([isAtLeast700px]){
+            width: 100%;
+            padding-right:30px;
+        }
+
+    </style>
+
+    <style include="iron-flex iron-flex-alignment">
+    </style>
+
+    <script>
+
+        Polymer({
+            is: 'accueil-section',
+            properties:{
+
+            },
+            updateResponsiveStyle : function() {
+//                if(this.isAtLeast700px){
+//                    this.customStyle['--width-desc-container'] = '50%';
+//                    this.customStyle['--layout-desc-container'] = this.customStyle['--layout-horizontal'];
+//                }else {
+//                    this.customStyle['--width-desc-container'] = '100%';
+//                    this.customStyle['--layout-desc-container'] = this.customStyle['--layout-vertical'];
+//                }
+//                this.updateStyles();
+            }
+
+        });
+    </script>
+
+</dom-module>
