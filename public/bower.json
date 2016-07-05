@@ -43,6 +43,7 @@
     "iron-collapse": "PolymerElements/iron-collapse#^1.0.8",
     "gold-email-input": "PolymerElements/gold-email-input#^1.0.7",
     "iron-media-query": "PolymerElements/iron-media-query#^1.0.8",
-    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#^1.0.5"
+    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#^1.0.5",
+    "note-book": "^1.0.1"
   }
 }

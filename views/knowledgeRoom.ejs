@@ -13,24 +13,50 @@
 
 <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
-<link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html" >
 <link rel="import" href="bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="bower_components/note-book/note-book.html">
 <link rel="import" href="bk_components/bk-toolbar.html">
+<link rel="import" href="bk_components/bk-footer.html">
 
 
 <link href="/stylesheets/style.css" rel="stylesheet">
+<link href="/stylesheets/knowledgeRoom.css" rel="stylesheet">
+
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
+        .blocNote{
+        --paper-input-container-input: {
+             line-height: 25px;
+                height: 500px;
+             width: 300px;
+         }
+        }
+    </style>
+
+    <style is="custom-style">
+
+    </style>
 
 </head>
 
 <body class="fullbleed layout vertical">
     <paper-scroll-header-panel class="flex">
-        <bk-toolbar class="paper-header" >
-        </bk-toolbar>
+        <section>
+            <bk-toolbar>
+            </bk-toolbar>
+        </section>
+        <div class="horizontal layout">
+            <div id="myembed"></div>
+            <note-book title="My Notebook">
+                <paper-textarea class="blocNote"></paper-textarea>
+            </note-book>
+        </div>
+
         <!-- 1. The Gruveo embed's <iframe> will replace this <div> tag. -->
-        <div id="myembed"></div>
+
         <script>
             // 2. This code loads the Gruveo Embed API code asynchronously.
             var tag = document.createElement("script");
@@ -84,6 +110,7 @@
             }
             console.log('end script');
         </script>
+
     </paper-scroll-header-panel>
 </body>
 
