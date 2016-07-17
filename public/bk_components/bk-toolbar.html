@@ -44,7 +44,7 @@
 		        </paper-menu>
 		    </div>
 		    <paper-scroll-header-panel main class="flex">
-				<paper-toolbar class="height">
+				<paper-toolbar>
 					<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
 		            <!-- content sert pour l'icon de menu dans admin.ejs, peut mettre à changer plus tard-->
 		            <content></content>
@@ -133,7 +133,7 @@
                 //TODO Il doit y avoir moyen de bind directemnt le r��sultat de l'iron-ajax dans les properties du component et de g��rer les displays avec du css
                 var user = this.$.ajax.lastResponse.user;
                 this.isAuthenticated = this.$.ajax.lastResponse.isAuthenticated;
-                if(user.photos){
+                if(user && user.photos){
                     this.$.profilPicture.src = user.photos[0].value;
                 }
                 if(this.isAuthenticated){
