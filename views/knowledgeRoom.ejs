@@ -49,66 +49,30 @@
             </bk-toolbar>
         </section>
         <div class="horizontal layout">
-            <div id="myembed"></div>
+            <div id="videoContainer" style="width:100%"></div>
             <note-book title="My Notebook">
                 <paper-textarea class="blocNote"></paper-textarea>
             </note-book>
         </div>
 
-        <!-- 1. The Gruveo embed's <iframe> will replace this <div> tag. -->
-
-        <script>
-            // 2. This code loads the Gruveo Embed API code asynchronously.
-            var tag = document.createElement("script");
-            tag.src = "https://www.gruveo.com/embed-api/";
-            var firstScriptTag = document.getElementsByTagName("script")[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            var categoryName =<%- JSON.stringify(category.name) %>;
-            console.log('initEmbed');
-            // 3. This function gets called after the API code downloads. It creates
-            //    the actual Gruveo embed (the <iframe>) and wires up the event
-            //    handlers.
-            var embed;
-            function onGruveoEmbedAPIReady() {
-                console.log('onGruveoEmbedAPIReady');
-                var generated =<%- JSON.stringify(generated) %>;
-                var signature =<%- JSON.stringify(signature) %>;
-
-                embed = new Gruveo.Embed("myembed", {
-                    width: 680,
-                    height: 465,
-                    embedParams: {
-                        code : categoryName,
-                        generated: generated,
-                        signature: signature,
-                        color: "63b2de"
-                    }
-                });
-
-                embed
-                        .on("ready", onEmbedReady)
-                        .on("stateChange", onEmbedStateChange);
-            }
-            console.log('event listen');
-
-            // 4. This function will get called by the API when the embed is ready.
-            function onEmbedReady(e) {
-                embed.call(code, true);
-            }
-
-            // 5. The API will call this function when the embed's state changes.
-            //    The function indicates that after a call is established
-            //    (state == "call"), the embed should hang up after 10 seconds.
-            function onEmbedStateChange(e) {
-                if (e.state == "call") {
-                    setTimeout(endCall, 10000);
-                }
-            }
-            function endCall() {
-                embed.end();
-            }
-            console.log('end script');
+        <script src="https://static.opentok.com/v2/js/opentok.js" charset="utf-8"></script>
+        <script charset="utf-8">
+            var apiKey = '45623442';
+            var sessionId = '2_MX40NTYyMzQ0Mn5-MTQ2ODkwNzYwMzgyN35JaXZjcG1uL1JUOVRwb3hBbm51Z1E1amN-fg';
+            var token = 'T1==cGFydG5lcl9pZD00NTYyMzQ0MiZzaWc9MDA1NmIzYTRmMjI5YWU2M2Y3YWI4ZWM0Yjk5NzZjMGQ4NmVkMmZhNDpzZXNzaW9uX2lkPTJfTVg0ME5UWXlNelEwTW41LU1UUTJPRGt3TnpZd016Z3lOMzVKYVhaamNHMXVMMUpVT1ZSd2IzaEJibTUxWjFFMWFtTi1mZyZjcmVhdGVfdGltZT0xNDY4OTA3Nzk3Jm5vbmNlPTAuNzg1MjA1MTY1ODU1NTg2NSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDY4OTExMzk3';
+            var session = OT.initSession(apiKey, sessionId)
+                    .on('streamCreated', function(event) {
+                        session.subscribe(event.stream);
+                    })
+                    .connect(token, function(error) {
+                        var publisherOptions = {
+                            insertMode:'append',
+                            width:'100%',
+                            height:'100%'
+                        }
+                        var publisher = OT.initPublisher("videoContainer",publisherOptions);
+                        session.publish(publisher);
+                    });
         </script>
 
     </paper-scroll-header-panel>
