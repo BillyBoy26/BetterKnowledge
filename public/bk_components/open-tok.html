@@ -1,0 +1,57 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+
+
+<dom-module id="open-tok">
+    <template>
+
+        <script src="https://static.opentok.com/v2/js/opentok.js" charset="utf-8" on-load="api"></script>
+        <div id="videoContainer" style="width:100%;height:100%"></div>
+
+    </template>
+
+    <style>
+        :host {
+            width: 100%;
+
+        }
+
+    </style>
+
+    <style include="iron-flex iron-flex-alignment">
+    </style>
+
+    <script>
+
+        Polymer({
+            is: 'open-tok',
+            properties:{
+            },
+
+            api : function() {
+                console.log('cc');
+                var apiKey = '45623442';
+                var sessionId = '2_MX40NTYyMzQ0Mn5-MTQ2ODkwNzYwMzgyN35JaXZjcG1uL1JUOVRwb3hBbm51Z1E1amN-fg';
+                var token = 'T1==cGFydG5lcl9pZD00NTYyMzQ0MiZzaWc9MDQxZjAxNDI5YmQ4MGZlOGQ0ZWYwM2Y4MzE2YzcyZDhhOWM0YzVmMzpzZXNzaW9uX2lkPTJfTVg0ME5UWXlNelEwTW41LU1UUTJPRGt3TnpZd016Z3lOMzVKYVhaamNHMXVMMUpVT1ZSd2IzaEJibTUxWjFFMWFtTi1mZyZjcmVhdGVfdGltZT0xNDY5MDUyNTEyJm5vbmNlPTAuNDEzMDUyMDQ1OTczMDE3OCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDcxNjQ0NTEz';
+                var session = OT.initSession(apiKey, sessionId)
+                        .on('streamCreated', function(event) {
+                            session.subscribe(event.stream);
+                        })
+                        .connect(token, function(error) {
+                            var publisherOptions = {
+                                insertMode:'append',
+                                width:'100%',
+                                height:'100%'
+                            }
+                            var publisher = OT.initPublisher("videoContainer",publisherOptions);
+                            session.publish(publisher);
+                        });
+            }
+
+        });
+    </script>
+
+</dom-module>
+
+
