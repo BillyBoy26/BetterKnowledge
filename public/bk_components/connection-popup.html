@@ -32,10 +32,10 @@
                     <div class="notification">{{loginMessage}}</div>
                     <iron-a11y-keys id="a11y" keys="enter" on-keys-pressed="_connect"></iron-a11y-keys>
                     <form is="iron-form" id="connectionForm" action="/auth/connection">
-                        <paper-input name="email" label="Adresse Email" class="paper-input">
+                        <paper-input name="email" label="Email adress" class="paper-input">
                             <iron-icon icon="mail" prefix></iron-icon>
                         </paper-input>
-                        <paper-input name="password" label="Mot de passe" type="password" class="paper-input">
+                        <paper-input name="password" label="Password" type="password" class="paper-input">
                             <iron-icon icon="lock" prefix></iron-icon>
                         </paper-input>
                         <paper-button id="connectionButton" raised onclick="_connect">Connection</paper-button>

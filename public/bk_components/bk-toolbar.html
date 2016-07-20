@@ -7,6 +7,8 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
 
 <link rel="import" href="../bk_components/connection-popup.html">
 
@@ -14,44 +16,64 @@
 <dom-module id="bk-toolbar">
     <template>
         <iron-ajax auto url="/auth/getConnectData" handle-as="json" last-response="{{data}}" method="GET"
-                   on-error="ajaxError" on-response="updateStyle" id="ajax"></iron-ajax>
-        <paper-toolbar>
-            <!-- content sert pour l'icon de menu dans admin.ejs, peut mettre à changer plus tard-->
-            <content></content>
-            <a href ="/" tabindex="-1">
-                <paper-icon-button icon="home"></paper-icon-button>
-            </a>
-            <span class="title">Better Knowledge</span>
-            <iron-image id="profilPicture"></iron-image>
-            <span>{{displayName(data.user)}}</span>
-            <connection-popup></connection-popup>
-            <!-- TODO jouer avec les offset pour faire un truc beau -->
-            <paper-menu-button id="loggedMenu" horizontal-align="right" vertical-align="top" horizontal-offset="0" vertical-offset="0">
-                <paper-icon-button icon="menu"  class="dropdown-trigger"></paper-icon-button>
-                <paper-menu class="dropdown-content" >
-                    <a href="/">
+                   on-error="ajaxError" on-response="updateStyle" id="ajax"></iron-ajax>                   
+        <paper-drawer-panel force-narrow class ="flex">
+		    <div drawer class="menuPanel">
+		        <paper-toolbar class="menuToolbar">
+		        	<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>	        
+		            <div class="menu-title">
+		                Menu
+		            </div>
+		        </paper-toolbar>
+		        <paper-menu selected="0">
+		        	<a href="/">
                         <paper-icon-item>
                             <iron-icon icon="home" item-icon></iron-icon>
                             Home
                         </paper-icon-item>
                     </a>
-                    <a href="/admin">
-                        <paper-icon-item>
-                            <iron-icon icon="forward" item-icon></iron-icon>
-                            Administration
-                        </paper-icon-item>
-                    </a>
-                    <a href="/logout">
-                        <paper-icon-item>
-                            <iron-icon icon="exit-to-app" item-icon></iron-icon>
-                            Logout
-                        </paper-icon-item>
-                    </a>
-                </paper-menu>
-            </paper-menu-button>
 
-        </paper-toolbar>
-    </template>
+		            <paper-icon-item>
+		                <iron-icon icon="face" item-icon></iron-icon>
+		                Users
+		            </paper-icon-item>
+		            <paper-icon-item>
+                		<iron-icon icon="folder" item-icon></iron-icon>
+                		Category
+            		</paper-icon-item>
+		        </paper-menu>
+		    </div>
+		    <paper-scroll-header-panel main class="flex">
+				<paper-toolbar>
+					<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+		            <!-- content sert pour l'icon de menu dans admin.ejs, peut mettre à changer plus tard-->
+		            <content></content>
+		            <span class="title">Better Knowledge</span>
+		            <iron-image id="profilPicture"></iron-image>
+		            <span>{{displayName(data.user)}}</span>
+		            <connection-popup></connection-popup>
+		            <!-- TODO jouer avec les offset pour faire un truc beau -->
+		            <paper-menu-button id="loggedMenu" horizontal-align="right" vertical-align="top" horizontal-offset="0" vertical-offset="0">
+		                <paper-icon-button icon="more-vert"  class="dropdown-trigger"></paper-icon-button>
+		                <paper-menu class="dropdown-content" >
+		                    <a href="/admin">
+		                        <paper-icon-item>
+		                            <iron-icon icon="forward" item-icon></iron-icon>
+		                            Administration
+		                        </paper-icon-item>
+		                    </a>
+		                    <a href="/logout">
+		                        <paper-icon-item>
+		                            <iron-icon icon="exit-to-app" item-icon></iron-icon>
+		                            Logout
+		                        </paper-icon-item>
+		                    </a>
+		                </paper-menu>
+		            </paper-menu-button>
+		        </paper-toolbar>
+    		</paper-scroll-header-panel>
+		</paper-drawer-panel>
+  	</template>
 
     <style>
         :host{
@@ -61,6 +83,26 @@
         #profilPicture{
             margin-right:10px;
         }
+        
+        .menu-title{
+		    font-weight: 500;
+		    font-size: 20px;
+		}
+		
+		.menuPanel{
+		    color :#737373;
+		}
+		
+		.menuToolbar{
+		    color :#737373;
+		    background-color: #ffffff;
+		    border-bottom: 1px solid rgba(0,0,0,0.22);
+		}
+		
+		.menuPanel iron-icon{
+		    margin-right: 37px;
+		}
+        
     </style>
 
     <style include="iron-flex iron-flex-alignment">
@@ -91,7 +133,7 @@
                 //TODO Il doit y avoir moyen de bind directemnt le r��sultat de l'iron-ajax dans les properties du component et de g��rer les displays avec du css
                 var user = this.$.ajax.lastResponse.user;
                 this.isAuthenticated = this.$.ajax.lastResponse.isAuthenticated;
-                if(user.photos){
+                if(user && user.photos){
                     this.$.profilPicture.src = user.photos[0].value;
                 }
                 if(this.isAuthenticated){
